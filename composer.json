@@ -1,0 +1,34 @@
+{
+    "name": "ichhabrecht/social-gdpr",
+    "description": "Show social media after user confirmation",
+    "type": "typo3-cms-extension",
+    "homepage": "https://github.com/IchHabRecht/social_gdpr",
+    "license": [
+        "GPL-2.0-or-later"
+    ],
+    "authors": [
+        {
+            "name": "Nicole Cordes",
+            "email": "typo3@cordes.co",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^8.7"
+    },
+    "replace": {
+        "typo3-ter/social-gdpr": "self.version"
+    },
+    "config": {
+        "vendor-dir": ".Build/vendor",
+        "bin-dir": ".Build/bin"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "social_gdpr",
+            "cms-package-dir": "{$vendor-dir}/typo3/cms",
+            "app-dir": ".Build",
+            "web-dir": ".Build/public"
+        }
+    }
+}
