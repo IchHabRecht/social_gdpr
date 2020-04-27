@@ -16,6 +16,11 @@
     "require": {
         "typo3/cms-core": "^8.7"
     },
+    "autoload": {
+        "psr-4": {
+            "IchHabRecht\\SocialGdpr\\": "Classes/"
+        }
+    },
     "replace": {
         "typo3-ter/social-gdpr": "self.version"
     },
