@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2020-04-28T12:35:23Z" product-name="social-gdpr">
+        <header />
+        <body>
+            <trans-unit id="privacy_policy">
+                <source>privacy policy</source>
+            </trans-unit>
+            <trans-unit id="youtube_notice">
+                <source><![CDATA[This is a YouTube video. If you click on this video you agree to the <a href="https://policies.google.com/privacy?hl=en" target="_blank">privacy &amp; terms</a> of Google and you also agree to our %s.]]></source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

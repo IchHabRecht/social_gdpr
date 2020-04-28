@@ -1,0 +1,25 @@
+.social-gdpr-youtube-video {
+    position: relative;
+    min-height: 315px;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.social-gdpr-youtube-video img {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.social-gdpr-youtube-iframe-notice {
+    position: absolute;
+    bottom: 0;
+    padding: 2.5% 5%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFFFFF;
+}

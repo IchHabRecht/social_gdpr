@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0">
+    <file target-language="de" source-language="en" datatype="plaintext" original="messages" date="2020-04-28T15:56:23Z" product-name="social_gdpr">
+        <header />
+        <body>
+            <trans-unit id="constants.templateRootPath">
+                <target>Pfad zu Template-Dateien (FE)</target>
+            </trans-unit>
+            <trans-unit id="constants.partialRootPath">
+                <source>Pfad zu Partial-Dateien (FE)</source>
+            </trans-unit>
+            <trans-unit id="constants.layoutRootPath">
+                <source>Pfad zu Layout-Dateien (FE)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

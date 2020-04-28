@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file target-language="de" source-language="en" datatype="plaintext" original="messages" date="2020-04-28T12:54:23Z" product-name="social-gdpr">
+        <header />
+        <body>
+            <trans-unit id="privacy_policy">
+                <target>Datenschutzrichtlinie</target>
+            </trans-unit>
+            <trans-unit id="youtube_notice">
+                <target><![CDATA[Dies ist ein YouTube Video. Wenn Sie auf dieses Video klicken, stimmen Sie der <a href="https://policies.google.com/privacy?hl=de" target="_blank">Datenschutzerklärung & Nutzungsbedingungen</a> von Google zu. Außerdem zustimmen Sie unserer %s zu.]]></target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
