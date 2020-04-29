@@ -2,6 +2,8 @@
 declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Handler;
 
+use IchHabRecht\SocialGdpr\Service\YoutubeImageService;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
 class YoutubeHandler implements HandlerInterface
@@ -10,6 +12,16 @@ class YoutubeHandler implements HandlerInterface
      * @var array
      */
     protected $matches = [];
+
+    /**
+     * @var YoutubeImageService
+     */
+    protected $youtubeImageService;
+
+    public function __construct(YoutubeImageService $youtubeImageService = null)
+    {
+        $this->youtubeImageService = $youtubeImageService ?: GeneralUtility::makeInstance(YoutubeImageService::class);
+    }
 
     public function hasMatches(string $content): bool
     {
@@ -35,6 +47,7 @@ class YoutubeHandler implements HandlerInterface
                         'iframeHash' => base64_encode($match[0]),
                         'height' => (int)($match['height'] ?? 0),
                         'width' => (int)($match['width'] ?? 0),
+                        'preview' => $this->youtubeImageService->getPreviewImage($match['id']),
                     ]
                 );
             },
