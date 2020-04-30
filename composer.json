@@ -16,6 +16,9 @@
     "require": {
         "typo3/cms-core": "^8.7"
     },
+    "require-dev": {
+        "nimut/testing-framework": "5.x-dev"
+    },
     "autoload": {
         "psr-4": {
             "IchHabRecht\\SocialGdpr\\": "Classes/"
