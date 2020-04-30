@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Service;
 
+use GuzzleHttp\Exception\RequestException;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
@@ -40,12 +41,15 @@ class YoutubeImageService
 
         if (!$fileExists) {
             foreach ($this->possiblePreviewNames as $previewName) {
-                $uri = implode('/', [$this->baseUri, $id, $previewName]);
-                $response = $this->requestFactory->request($uri);
-                if ($response->getStatusCode() === 200) {
-                    GeneralUtility::writeFileToTypo3tempDir($filename, $response->getBody()->getContents());
-                    $fileExists = true;
-                    break;
+                try {
+                    $uri = implode('/', [$this->baseUri, $id, $previewName]);
+                    $response = $this->requestFactory->request($uri);
+                    if ($response->getStatusCode() === 200) {
+                        GeneralUtility::writeFileToTypo3tempDir($filename, $response->getBody()->getContents());
+                        $fileExists = true;
+                        break;
+                    }
+                } catch (RequestException $e) {
                 }
             }
         }
