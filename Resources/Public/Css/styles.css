@@ -1,4 +1,5 @@
-.social-gdpr-youtube-video {
+.social-gdpr-youtube-video,
+.social-gdpr-vimeo-video {
     position: relative;
     min-height: 315px;
     background-position: 50% 50%;
@@ -7,7 +8,8 @@
     cursor: pointer;
 }
 
-.social-gdpr-youtube-video img {
+.social-gdpr-youtube-video img,
+.social-gdpr-vimeo-video img {
     position: absolute;
     height: 100px;
     width: 100px;
@@ -16,7 +18,8 @@
     transform: translate(-50%, -50%);
 }
 
-.social-gdpr-youtube-iframe-notice {
+.social-gdpr-youtube-iframe-notice,
+.social-gdpr-vimeo-iframe-notice {
     position: absolute;
     bottom: 0;
     padding: 2.5% 5%;

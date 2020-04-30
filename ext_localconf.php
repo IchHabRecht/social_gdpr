@@ -8,6 +8,7 @@ call_user_func(function () {
     $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['social_gdpr']['handler'] = array_merge(
         [
             'youtube' => \IchHabRecht\SocialGdpr\Handler\YoutubeHandler::class,
+            'vimeo' => \IchHabRecht\SocialGdpr\Handler\VimeoHandler::class,
         ],
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['social_gdpr']['handler'] ?? []
     );
