@@ -1,3 +1,12 @@
+2020-05-04         [RELEASE] Release of social_gdpr 1.0.0 (Nicole Cordes)
+2020-04-30 6bcfbe4 [FEATURE] Add unit test for VimeoHandler (Nicole Cordes)
+2020-04-30 906d994 [FEATURE] Add Vimeo handler (Nicole Cordes)
+2020-04-30 5b0e0d2 [BUGFIX] Catch response errors in YoutubeImageService (Nicole Cordes)
+2020-04-30 4839935 [FEATURE] Raise TYPO3 dependencies to include 9.5 and 10.4 (Nicole Cordes)
+2020-04-30 1f5cd1a [FEATURE] Add unit test for YoutubeHandler (Nicole Cordes)
+2020-04-30 c81e3ad [BUGFIX] Improve regular expression in YoutubeHandler (Nicole Cordes)
+2020-04-29 9a5d8ee [FEATURE] Replace embetty-server-php with own YouTube service (Nicole Cordes)
+
 2020-04-29         [RELEASE] Release of social_gdpr 0.1.0 (Nicole Cordes)
 2020-04-28 07163d9 [FEATURE] Add YouTube handler (Nicole Cordes)
 2020-04-27 f1deeb6 [FEATURE] Register TypoScriptFrontendController hook (Nicole Cordes)
