@@ -17,3 +17,5 @@ lib.socialgdpr {
 
 page.includeCSS.social_gdpr = EXT:social_gdpr/Resources/Public/Css/styles.css
 page.includeJSFooter.social_gdpr = EXT:social_gdpr/Resources/Public/JavaScript/decode.js
+// if you need to support bad old IE
+#page.includeJSFooter.social_gdpr = EXT:social_gdpr/Resources/Public/JavaScript/decode-es5.js
