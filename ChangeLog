@@ -1,3 +1,8 @@
+2020-05-06         [RELEASE] Release of social_gdpr 1.0.1 (Nicole Cordes)
+2020-05-06 d416c82 [BUGFIX] Use absolute path for play buttons (Nicole Cordes)
+2020-05-05 103556f [BUGFIX] Fix German language labels (Nicole Cordes)
+2020-05-05 1057cdc [BUGFIX] Downgrade Javascript to ES 5.1 (Nicole Cordes)
+
 2020-05-04         [RELEASE] Release of social_gdpr 1.0.0 (Nicole Cordes)
 2020-04-30 6bcfbe4 [FEATURE] Add unit test for VimeoHandler (Nicole Cordes)
 2020-04-30 906d994 [FEATURE] Add Vimeo handler (Nicole Cordes)
