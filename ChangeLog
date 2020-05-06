@@ -1,3 +1,7 @@
+2020-05-06         [RELEASE] Release of social_gdpr 1.0.2 (Nicole Cordes)
+2020-05-06 50c9cdd [TASK] Format CSS file (Nicole Cordes)
+2020-05-06 a4a4695 [FEATURE] improve responsiveness (Franz Kugelmann)
+
 2020-05-06         [RELEASE] Release of social_gdpr 1.0.1 (Nicole Cordes)
 2020-05-06 d416c82 [BUGFIX] Use absolute path for play buttons (Nicole Cordes)
 2020-05-05 103556f [BUGFIX] Fix German language labels (Nicole Cordes)
