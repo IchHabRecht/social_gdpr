@@ -26,7 +26,7 @@ class YoutubeHandler implements HandlerInterface
     public function hasMatches(string $content): bool
     {
         preg_match_all(
-            '/<iframe(?:(?:src="(?:https?:\/\/)?(?:www\.)?youtube(?:-nocookie)?.*?\/(?:embed\/|watch\?v=|)(?<id>[a-z_A-Z0-9\-]{11})[^"]*?"|height="(?<height>[^"]+)"|width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
+            '/<iframe(?:(?:src="(?:(?:https?:)?\/\/)?(?:www\.)?youtube(?:-nocookie)?.*?\/(?:embed\/|watch\?v=|)(?<id>[a-z_A-Z0-9\-]{11})[^"]*?"|height="(?<height>[^"]+)"|width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
             $content,
             $this->matches,
             PREG_SET_ORDER

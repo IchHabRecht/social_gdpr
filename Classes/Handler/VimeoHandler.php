@@ -26,7 +26,7 @@ class VimeoHandler implements HandlerInterface
     public function hasMatches(string $content): bool
     {
         preg_match_all(
-            '/<iframe(?:(?:src="(?:https?:\/\/)?(?:www\.)?(?:player\.)?vimeo\.com\/video\/(?<id>[a-z_A-Z0-9\-]+)[^"]*?"|height="(?<height>[^"]+)"|width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
+            '/<iframe(?:(?:src="(?:(?:https?:)?\/\/)?(?:www\.)?(?:player\.)?vimeo\.com\/video\/(?<id>[a-z_A-Z0-9\-]+)[^"]*?"|height="(?<height>[^"]+)"|width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
             $content,
             $this->matches,
             PREG_SET_ORDER
