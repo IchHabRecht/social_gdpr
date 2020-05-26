@@ -1,3 +1,6 @@
+2020-05-26         [RELEASE] Release of social_gdpr 1.0.3 (Nicole Cordes)
+2020-05-26 8eb31d5 [BUGFIX] Allow video urls without scheme (Nicole Cordes)
+
 2020-05-06         [RELEASE] Release of social_gdpr 1.0.2 (Nicole Cordes)
 2020-05-06 50c9cdd [TASK] Format CSS file (Nicole Cordes)
 2020-05-06 a4a4695 [FEATURE] improve responsiveness (Franz Kugelmann)
