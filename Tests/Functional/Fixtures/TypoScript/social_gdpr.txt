@@ -1,0 +1,11 @@
+config {
+    absRefPrefix = auto
+}
+
+page = PAGE
+page {
+    10 = FLUIDTEMPLATE
+    10 {
+        file = EXT:social_gdpr/Tests/Fixtures/Content.html
+    }
+}
