@@ -1,7 +1,8 @@
 <?php
 declare(strict_types = 1);
-namespace IchHabRecht\SocialGdpr\Handler;
+namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
+use IchHabRecht\SocialGdpr\Handler\YoutubeHandler;
 use IchHabRecht\SocialGdpr\Service\YoutubeImageService;
 
 class YoutubeHandlerTest extends AbstractVideoTest

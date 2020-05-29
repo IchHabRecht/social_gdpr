@@ -24,6 +24,11 @@
             "IchHabRecht\\SocialGdpr\\": "Classes/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "IchHabRecht\\SocialGdpr\\Tests\\": "Tests/"
+        }
+    },
     "replace": {
         "typo3-ter/social-gdpr": "self.version"
     },

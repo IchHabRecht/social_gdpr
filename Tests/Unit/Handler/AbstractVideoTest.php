@@ -1,6 +1,6 @@
 <?php
 declare(strict_types = 1);
-namespace IchHabRecht\SocialGdpr\Handler;
+namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
