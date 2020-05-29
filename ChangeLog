@@ -1,3 +1,8 @@
+2020-05-29         [RELEASE] Release of social_gdpr 1.0.4 (Nicole Cordes)
+2020-05-29 1a5feea [FEATURE] Add functional test for play button path (Nicole Cordes)
+2020-05-29 a941ba7 [TASK] Use correct namespace for test classes (Nicole Cordes)
+2020-05-29 e614cfa [BUGFIX] Use ImageViewHelper instead of ResourceViewHelper (Nicole Cordes)
+
 2020-05-26         [RELEASE] Release of social_gdpr 1.0.3 (Nicole Cordes)
 2020-05-26 8eb31d5 [BUGFIX] Allow video urls without scheme (Nicole Cordes)
 
