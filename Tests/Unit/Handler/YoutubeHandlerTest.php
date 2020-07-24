@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\YoutubeHandler;
@@ -18,7 +17,10 @@ class YoutubeHandlerTest extends AbstractVideoTest
         $this->assertCount(3, $handler->getMatches());
     }
 
-    protected function getYoutubeHandler(): YoutubeHandler
+    /**
+     * @return YoutubeHandler
+     */
+    protected function getYoutubeHandler()
     {
         $youtubeImageService = $this->prophesize(YoutubeImageService::class);
         $youtubeImageService->getPreviewImage('yiJjpKzCVE4')->shouldBeCalled()->willReturn('url://yiJjpKzCVE4');

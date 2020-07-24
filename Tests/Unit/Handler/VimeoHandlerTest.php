@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\VimeoHandler;
@@ -18,7 +17,10 @@ class VimeoHandlerTest extends AbstractVideoTest
         $this->assertCount(3, $handler->getMatches());
     }
 
-    protected function getVimeoHandler(): VimeoHandler
+    /**
+     * @return VimeoHandler
+     */
+    protected function getVimeoHandler()
     {
         $vimeoImageService = $this->prophesize(VimeoImageService::class);
         $vimeoImageService->getPreviewImage('143018597')->shouldBeCalled()->willReturn('url://143018597');

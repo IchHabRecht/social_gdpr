@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Handler;
 
 class Match
@@ -14,18 +13,28 @@ class Match
      */
     protected $search;
 
-    public function __construct(string $search, array $data = [])
+    /**
+     * @param string $search
+     * @param array $data
+     */
+    public function __construct($search, array $data = [])
     {
         $this->search = $search;
         $this->data = $data;
     }
 
-    public function getData(): array
+    /**
+     * @return array
+     */
+    public function getData()
     {
         return $this->data;
     }
 
-    public function getSearch(): string
+    /**
+     * @return string
+     */
+    public function getSearch()
     {
         return $this->search;
     }

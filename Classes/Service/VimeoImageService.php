@@ -1,13 +1,10 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Service;
 
-use GuzzleHttp\Exception\RequestException;
-use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
-class VimeoImageService
+class VimeoImageService extends AbstractImageService
 {
     /**
      * @var string
@@ -15,36 +12,29 @@ class VimeoImageService
     protected $apiUri = 'https://vimeo.com/api/v2/video/###ID###.json';
 
     /**
-     * @var RequestFactory
+     * @param string $id
+     * @return string
      */
-    protected $requestFactory;
-
-    public function __construct(RequestFactory $requestFactory = null)
-    {
-        $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
-    }
-
-    public function getPreviewImage($id): string
+    public function getPreviewImage($id)
     {
         $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/vimeo_' . md5($id) . '.jpg');
         $fileExists = file_exists($filename);
 
         if (!$fileExists) {
-            try {
-                $uri = str_replace('###ID###', $id, $this->apiUri);
-                $response = $this->requestFactory->request($uri);
-                if ($response->getStatusCode() === 200) {
-                    $json = json_decode($response->getBody()->getContents(), true);
-                    if (!empty($json[0]['thumbnail_large']) || !empty($json[0]['thumbnail_medium']) || !empty($json[0]['thumbnail_small'])) {
-                        $thumbnailUri = $json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium'] ?: $json[0]['thumbnail_small'];
-                        $thumbnailResponse = $this->requestFactory->request($thumbnailUri);
-                        if ($thumbnailResponse->getStatusCode() === 200) {
-                            GeneralUtility::writeFileToTypo3tempDir($filename, $thumbnailResponse->getBody()->getContents());
-                            $fileExists = true;
-                        }
+            $uri = str_replace('###ID###', $id, $this->apiUri);
+            $statusCode = null;
+            $content = $this->getRequest($uri, $statusCode);
+            if ($statusCode === 200) {
+                $json = json_decode($content, true);
+                if (!empty($json[0]['thumbnail_large']) || !empty($json[0]['thumbnail_medium']) || !empty($json[0]['thumbnail_small'])) {
+                    $thumbnailUri = $json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium'] ?: $json[0]['thumbnail_small'];
+                    $thumbnailStatusCode = null;
+                    $thumbnailContent = $this->getRequest($thumbnailUri, $thumbnailStatusCode);
+                    if ($thumbnailStatusCode === 200) {
+                        GeneralUtility::writeFileToTypo3tempDir($filename, $thumbnailContent);
+                        $fileExists = true;
                     }
                 }
-            } catch (RequestException $e) {
             }
         }
 

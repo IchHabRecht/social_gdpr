@@ -1,13 +1,10 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Service;
 
-use GuzzleHttp\Exception\RequestException;
-use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
-class YoutubeImageService
+class YoutubeImageService extends AbstractImageService
 {
     /**
      * @var string
@@ -25,31 +22,23 @@ class YoutubeImageService
     ];
 
     /**
-     * @var RequestFactory
+     * @param string $id
+     * @return string
      */
-    protected $requestFactory;
-
-    public function __construct(RequestFactory $requestFactory = null)
-    {
-        $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
-    }
-
-    public function getPreviewImage($id): string
+    public function getPreviewImage($id)
     {
         $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/youtube_' . md5($id) . '.jpg');
         $fileExists = file_exists($filename);
 
         if (!$fileExists) {
             foreach ($this->possiblePreviewNames as $previewName) {
-                try {
-                    $uri = implode('/', [$this->baseUri, $id, $previewName]);
-                    $response = $this->requestFactory->request($uri);
-                    if ($response->getStatusCode() === 200) {
-                        GeneralUtility::writeFileToTypo3tempDir($filename, $response->getBody()->getContents());
-                        $fileExists = true;
-                        break;
-                    }
-                } catch (RequestException $e) {
+                $uri = implode('/', [$this->baseUri, $id, $previewName]);
+                $statusCode = null;
+                $content = $this->getRequest($uri, $statusCode);
+                if ($statusCode === 200) {
+                    GeneralUtility::writeFileToTypo3tempDir($filename, $content);
+                    $fileExists = true;
+                    break;
                 }
             }
         }

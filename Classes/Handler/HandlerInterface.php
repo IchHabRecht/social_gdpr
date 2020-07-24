@@ -1,13 +1,16 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Handler;
 
 interface HandlerInterface
 {
-    public function hasMatches(string $content): bool;
+    /**
+     * @param string $content
+     * @return bool
+     */
+    public function hasMatches($content);
 
     /**
      * @return Match[]
      */
-    public function getMatches(): array;
+    public function getMatches();
 }

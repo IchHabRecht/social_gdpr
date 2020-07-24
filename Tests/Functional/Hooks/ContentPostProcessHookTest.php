@@ -1,5 +1,4 @@
 <?php
-declare(strict_types = 1);
 namespace IchHabRecht\SocialGdpr\Tests\Functional\Hooks;
 
 use Nimut\TestingFramework\TestCase\FunctionalTestCase;
