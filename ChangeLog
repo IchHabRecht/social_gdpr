@@ -1,3 +1,9 @@
+2020-08-10         [RELEASE] Release of social_gdpr 2.0.0 (Nicole Cordes)
+2020-08-10 45804b9 [FEATURE] Add Google Maps iframe handler (Nicole Cordes)
+2020-08-10 6e8ea77 !!![BUGFIX] Handle iframe height and width correctly (Nicole Cordes)
+2020-08-10 206e931 [TASK] Raise extension version to 2.x (Nicole Cordes)
+2020-08-10 e929b86 [TASK] Update supporting files to EXT:my_skeleton 0.4.0 (Nicole Cordes)
+
 2020-05-29         [RELEASE] Release of social_gdpr 1.0.4 (Nicole Cordes)
 2020-05-29 1a5feea [FEATURE] Add functional test for play button path (Nicole Cordes)
 2020-05-29 a941ba7 [TASK] Use correct namespace for test classes (Nicole Cordes)
