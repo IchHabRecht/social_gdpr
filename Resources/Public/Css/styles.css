@@ -1,5 +1,6 @@
 .social-gdpr-youtube-video,
-.social-gdpr-vimeo-video {
+.social-gdpr-vimeo-video,
+.social-gdpr-google-maps {
     position: relative;
     min-height: 315px;
     background-position: 50% 50%;
@@ -9,7 +10,8 @@
 }
 
 .social-gdpr-youtube-video img.videostub,
-.social-gdpr-vimeo-video img.videostub {
+.social-gdpr-vimeo-video img.videostub,
+.social-gdpr-google-maps img.mapstub {
     position: absolute;
     height: 100px;
     width: 100px;
@@ -19,27 +21,32 @@
 }
 
 .social-gdpr-youtube-iframe-notice,
-.social-gdpr-vimeo-iframe-notice {
+.social-gdpr-vimeo-iframe-notice,
+.social-gdpr-google-maps-iframe-notice {
     position: absolute;
     bottom: 0;
     padding: 2.5% 5% 3% 5%;
+    width: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     color: #ffffff;
 }
 
 .social-gdpr-youtube-iframe-notice p,
-.social-gdpr-vimeo-iframe-notice p {
+.social-gdpr-vimeo-iframe-notice p,
+.social-gdpr-google-maps-iframe-notice p {
     font-size: inherit;
 }
 
 @media screen and (max-width: 520px) {
     .social-gdpr-youtube-iframe-notice,
-    .social-gdpr-vimeo-iframe-notice {
+    .social-gdpr-vimeo-iframe-notice,
+    .social-gdpr-google-maps-iframe-notice {
         font-size: 75%;
     }
 
     .social-gdpr-youtube-video img.videostub,
-    .social-gdpr-vimeo-video img.videostub {
+    .social-gdpr-vimeo-video img.videostub,
+    .social-gdpr-google-maps-video img.mapstub {
         height: auto;
         width: 75px;
         top: 30%;
@@ -48,7 +55,8 @@
 
 @media screen and (max-width: 320px) {
     .social-gdpr-youtube-video img.videostub,
-    .social-gdpr-vimeo-video img.videostub {
+    .social-gdpr-vimeo-video img.videostub,
+    .social-gdpr-google-maps-video img.mapstub {
         width: 50px;
     }
 }

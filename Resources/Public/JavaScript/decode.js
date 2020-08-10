@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var videos = document.querySelectorAll('.social-gdpr-youtube-video, .social-gdpr-vimeo-video');
-    videos.forEach(function(video) {
-        video.addEventListener('click', function(event) {
+    var iframes = document.querySelectorAll('.social-gdpr-youtube-video, .social-gdpr-vimeo-video, .social-gdpr-google-maps');
+    iframes.forEach(function(iframe) {
+        iframe.addEventListener('click', function(event) {
             if (event.target.tagName.toLowerCase() !== 'a') {
-                var video = event.currentTarget;
-                video.parentNode.innerHTML = atob(video.children[0].getAttribute('data-iframe'));
+                var iframe = event.currentTarget;
+                iframe.parentNode.innerHTML = atob(iframe.children[0].getAttribute('data-iframe'));
                 event.preventDefault();
             }
         });

@@ -12,6 +12,9 @@
             <trans-unit id="vimeo_notice">
                 <target><![CDATA[Dies ist ein Vimeo Video. Wenn Sie auf dieses Video klicken, stimmen Sie der <a href="https://vimeo.com/cookie_policy" target="_blank">Cookie-Richtlinie</a> von Vimeo zu. Außerdem stimmen Sie unserer %s zu.]]></target>
             </trans-unit>
+            <trans-unit id="google_maps_notice">
+                <target><![CDATA[Dies ist eine Google Maps Karte. Wenn Sie auf diese Karte klicken, stimmen Sie der <a href="https://policies.google.com/privacy?hl=de-DE" target="_blank">Datenschutzerklärung</a> von Google zu. Außerdem stimmen Sie unserer %s zu.]]></target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
