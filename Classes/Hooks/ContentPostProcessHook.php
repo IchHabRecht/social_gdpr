@@ -1,5 +1,7 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
+
 namespace IchHabRecht\SocialGdpr\Hooks;
 
 use IchHabRecht\SocialGdpr\Handler\HandlerInterface;
