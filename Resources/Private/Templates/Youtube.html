@@ -1,7 +1,7 @@
 <div class="social-gdpr-youtube-iframe">
     <div class="social-gdpr-youtube-video" id="yt{data.uid}" style="{f:if(condition: data.preview, then: 'background-image: url(\'{data.preview}\'); ')}{f:if(condition: data.height, then: 'height: {data.height}; ')}{f:if(condition: data.width, then: 'width: {data.width};')}">
         <div class="social-gdpr-youtube-iframe-disarmed" data-iframe="{data.iframeHash}">
-            <img src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/youtube_play_button.svg')}" width="44" height="31" alt="" class="videostub" />
+            <img src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/youtube_play_button.svg')}" alt="" class="videostub" height="100" width="100" />
             <div class="social-gdpr-youtube-iframe-notice">
                 <p>{f:translate(id: 'youtube_notice', extensionName: 'social_gdpr', arguments: {0: '{f:translate(id: "privacy_policy", extensionName: "social_gdpr")->f:link.typolink(parameter: "{settings.privacyPid}")}'})->f:format.raw()}</p>
             </div>

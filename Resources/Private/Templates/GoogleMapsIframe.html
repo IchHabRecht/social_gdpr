@@ -1,7 +1,7 @@
 <div class="social-gdpr-google-maps-iframe">
     <div class="social-gdpr-google-maps" id="gm{data.uid}" style="background-color: #90DFAA;{f:if(condition: data.height, then: 'height: {data.height}; ')}{f:if(condition: data.width, then: 'width: {data.width};')}">
         <div class="social-gdpr-google-maps-iframe-disarmed" data-iframe="{data.iframeHash}">
-            <img src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/maps_button.svg')}" width="75" height="64" alt="" class="mapstub" />
+            <img src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/maps_button.svg')}" alt="" class="mapstub" height="100" width="100" />
             <div class="social-gdpr-google-maps-iframe-notice">
                 <p>{f:translate(id: 'google_maps_notice', extensionName: 'social_gdpr', arguments: {0: '{f:translate(id: "privacy_policy", extensionName: "social_gdpr")->f:link.typolink(parameter: "{settings.privacyPid}")}'})->f:format.raw()}</p>
             </div>
