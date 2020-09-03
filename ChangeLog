@@ -1,3 +1,7 @@
+2020-09-03         [RELEASE] Release of social_gdpr 2.0.1 (Nicole Cordes)
+2020-09-01 cd6f442 [TASK] Use same size constraints as defined in CSS (Nicole Cordes)
+2020-08-31 0c7be44 [FEATURE] add width and height to icon images to improve CLS score (Franz Kugelmann)
+
 2020-08-10         [RELEASE] Release of social_gdpr 2.0.0 (Nicole Cordes)
 2020-08-10 45804b9 [FEATURE] Add Google Maps iframe handler (Nicole Cordes)
 2020-08-10 6e8ea77 !!![BUGFIX] Handle iframe height and width correctly (Nicole Cordes)
