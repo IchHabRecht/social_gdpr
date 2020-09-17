@@ -21,7 +21,7 @@ class GoogleMapsIframeHandler implements HandlerInterface
     public function hasMatches(string $content): bool
     {
         preg_match_all(
-            '/<iframe(?:(?:src="(?:(?:https?:)?\/\/)?(?:www\.)?google\.[a-z]+\/maps\/[^"]*?"|height="(?<height>[^"]+)"|width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
+            '/<iframe(?:(?:src="(?:(?:https?:)?\/\/)?(?:www\.)?google\.[a-z]+\/maps\/[^"]*?"| height="(?<height>[^"]+)"| width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
             $content,
             $this->matches,
             PREG_SET_ORDER
