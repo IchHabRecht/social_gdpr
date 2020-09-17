@@ -46,7 +46,7 @@
 
     .social-gdpr-youtube-video img.videostub,
     .social-gdpr-vimeo-video img.videostub,
-    .social-gdpr-google-maps-video img.mapstub {
+    .social-gdpr-google-maps img.mapstub {
         height: auto;
         width: 75px;
         top: 30%;
