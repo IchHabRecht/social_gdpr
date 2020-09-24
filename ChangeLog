@@ -1,3 +1,8 @@
+2020-09-24         [RELEASE] Release of social_gdpr 3.0.0 (Nicole Cordes)
+2020-09-24 9885fd8 !!![FEATURE] Add extension configuration for preview images (Nicole Cordes)
+2020-09-24 ea7fdb7 [FEATURE] Add OpenStreetMap handler (Nicole Cordes)
+2020-09-23 aef01f7 [TASK] Raise extension version to 3.x (Nicole Cordes)
+
 2020-09-23         [RELEASE] Release of social_gdpr 2.0.2 (Nicole Cordes)
 2020-09-17 f213798 [BUGFIX] Use correct CSS class for map icon (Nicole Cordes)
 2020-09-17 423f5d8 [BUGFIX] Improve iframe height and width detection (Nicole Cordes)
