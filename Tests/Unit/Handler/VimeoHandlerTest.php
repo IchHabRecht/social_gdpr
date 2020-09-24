@@ -7,7 +7,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 use IchHabRecht\SocialGdpr\Handler\VimeoHandler;
 use IchHabRecht\SocialGdpr\Service\VimeoImageService;
 
-class VimeoHandlerTest extends AbstractVideoTest
+class VimeoHandlerTest extends AbstractHandlerTest
 {
     /**
      * @test

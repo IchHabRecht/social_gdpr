@@ -7,7 +7,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 use IchHabRecht\SocialGdpr\Handler\YoutubeHandler;
 use IchHabRecht\SocialGdpr\Service\YoutubeImageService;
 
-class YoutubeHandlerTest extends AbstractVideoTest
+class YoutubeHandlerTest extends AbstractHandlerTest
 {
     /**
      * @test

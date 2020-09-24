@@ -6,7 +6,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use Nimut\TestingFramework\TestCase\UnitTestCase;
 
-abstract class AbstractVideoTest extends UnitTestCase
+abstract class AbstractHandlerTest extends UnitTestCase
 {
     /**
      * @var string

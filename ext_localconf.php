@@ -11,6 +11,7 @@ call_user_func(function () {
             'youtube' => \IchHabRecht\SocialGdpr\Handler\YoutubeHandler::class,
             'vimeo' => \IchHabRecht\SocialGdpr\Handler\VimeoHandler::class,
             'googleMapsIframe' => \IchHabRecht\SocialGdpr\Handler\GoogleMapsIframeHandler::class,
+            'openStreetMap' => \IchHabRecht\SocialGdpr\Handler\OpenStreetMapHandler::class,
         ],
         $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['social_gdpr']['handler'] ?? []
     );
