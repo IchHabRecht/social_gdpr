@@ -15,6 +15,24 @@ class ContentPostProcessHookTest extends FunctionalTestCase
         'typo3conf/ext/social_gdpr',
     ];
 
+    /**
+     * @var array
+     */
+    protected $configurationToUseInTestInstance = [
+        'EXT' => [
+            'extConf' => [
+                'social_gdpr' => 'a:3:{s:14:"youtubePreview";s:1:"1";s:12:"vimeoPreview";s:1:"1";s:10:"osmPreview";s:1:"1";}',
+            ],
+        ],
+        'EXTENSIONS' => [
+            'social_gdpr' => [
+                'osmPreview' => '0',
+                'vimeoPreview' => '0',
+                'youtubePreview' => '0',
+            ],
+        ],
+    ];
+
     protected function setUp()
     {
         parent::setUp();

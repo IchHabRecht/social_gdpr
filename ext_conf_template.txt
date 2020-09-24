@@ -1,0 +1,8 @@
+# cat=preview/enable/010; type=boolean; label=LLL:EXT:social_gdpr/Resources/Private/Language/locallang_be.xlf:config.preview.youtube
+youtubePreview = 0
+
+# cat=preview/enable/020; type=boolean; label=LLL:EXT:social_gdpr/Resources/Private/Language/locallang_be.xlf:config.preview.vimeo
+vimeoPreview = 0
+
+# cat=preview/enable/030; type=boolean; label=LLL:EXT:social_gdpr/Resources/Private/Language/locallang_be.xlf:config.preview.osm
+osmPreview = 0

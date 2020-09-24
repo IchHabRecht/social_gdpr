@@ -6,6 +6,7 @@ namespace IchHabRecht\SocialGdpr\Service;
 
 use GuzzleHttp\Cookie\CookieJar;
 use GuzzleHttp\Exception\RequestException;
+use IchHabRecht\SocialGdpr\ExtensionConfiguration;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
@@ -18,17 +19,27 @@ class OpenStreetMapService
     protected $apiUri = 'https://render.openstreetmap.org/cgi-bin/export?bbox=###BBOX###&scale=1550&format=png';
 
     /**
+     * @var ExtensionConfiguration
+     */
+    protected $extensionConfiguration;
+
+    /**
      * @var RequestFactory
      */
     protected $requestFactory;
 
-    public function __construct(RequestFactory $requestFactory = null)
+    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
     {
+        $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
     }
 
     public function getPreviewImage($bbox): string
     {
+        if (!$this->extensionConfiguration->isEnabled('osmPreview')) {
+            return '';
+        }
+
         $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/osm_' . md5($bbox) . '.png');
         $fileExists = file_exists($filename);
 

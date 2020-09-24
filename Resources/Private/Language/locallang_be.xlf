@@ -3,6 +3,15 @@
     <file source-language="en" datatype="plaintext" original="messages" date="2020-04-28T15:55:23Z" product-name="social_gdpr">
         <header />
         <body>
+            <trans-unit id="config.preview.youtube">
+                <source>Enable YouTube preview images</source>
+            </trans-unit>
+            <trans-unit id="config.preview.vimeo">
+                <source>Enable Vimeo preview images</source>
+            </trans-unit>
+            <trans-unit id="config.preview.osm">
+                <source>Enable OpenStreetMap preview images</source>
+            </trans-unit>
             <trans-unit id="constants.templateRootPath">
                 <source>Path to template root (FE)</source>
             </trans-unit>

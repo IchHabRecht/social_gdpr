@@ -3,6 +3,15 @@
     <file target-language="de" source-language="en" datatype="plaintext" original="messages" date="2020-04-28T15:56:23Z" product-name="social_gdpr">
         <header />
         <body>
+            <trans-unit id="config.preview.youtube">
+                <target>Vorschaubilder für YouTube aktivieren</target>
+            </trans-unit>
+            <trans-unit id="config.preview.vimeo">
+                <target>Vorschaubilder für Vimeo aktiviren</target>
+            </trans-unit>
+            <trans-unit id="config.preview.osm">
+                <target>Vorschaubilder für OpenStreetMap aktivieren</target>
+            </trans-unit>
             <trans-unit id="constants.templateRootPath">
                 <target>Pfad zu Template-Dateien (FE)</target>
             </trans-unit>
