@@ -16,7 +16,7 @@ class OpenStreetMapService
     /**
      * @var string
      */
-    protected $apiUri = 'https://render.openstreetmap.org/cgi-bin/export?bbox=###BBOX###&scale=1550&format=png';
+    protected $apiUri = 'https://render.openstreetmap.org/cgi-bin/export?bbox=###BBOX###&scale=3650&format=png';
 
     /**
      * @var ExtensionConfiguration
