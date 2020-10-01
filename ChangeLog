@@ -1,3 +1,6 @@
+2020-10-01         [RELEASE] Release of social_gdpr 3.0.1 (Nicole Cordes)
+2020-10-01 d02a7ba [BUGFIX] Use proper scaling for OpenStreetMap maps (Nicole Cordes)
+
 2020-09-24         [RELEASE] Release of social_gdpr 3.0.0 (Nicole Cordes)
 2020-09-24 9885fd8 !!![FEATURE] Add extension configuration for preview images (Nicole Cordes)
 2020-09-24 ea7fdb7 [FEATURE] Add OpenStreetMap handler (Nicole Cordes)
