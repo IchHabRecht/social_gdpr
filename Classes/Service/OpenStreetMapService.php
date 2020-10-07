@@ -16,7 +16,7 @@ class OpenStreetMapService
     /**
      * @var string
      */
-    protected $apiUri = 'https://render.openstreetmap.org/cgi-bin/export?bbox=###BBOX###&scale=3650&format=png';
+    protected $apiUri = 'https://render.openstreetmap.org/cgi-bin/export?bbox=###BBOX###&scale=###scale###&format=png';
 
     /**
      * @var ExtensionConfiguration
@@ -46,12 +46,18 @@ class OpenStreetMapService
         if (!$fileExists) {
             try {
                 $cookies = new CookieJar();
-                $uri = str_replace('###BBOX###', $bbox, $this->apiUri);
                 $this->requestFactory->request('https://www.openstreetmap.org/', 'GET', ['cookies' => $cookies]);
-                $response = $this->requestFactory->request($uri, 'GET', ['cookies' => $cookies, 'sink' => $filename]);
-                if ($response->getStatusCode() === 200) {
-                    // GeneralUtility::writeFileToTypo3tempDir($filename, $response->getBody()->getContents());
-                    $fileExists = true;
+                for ($i = 1; $i < 4; $i++) {
+                    try {
+                        $uri = str_replace(['###BBOX###', '###scale###'], [$bbox, $i * 2850], $this->apiUri);
+                        $response = $this->requestFactory->request($uri, 'GET', ['cookies' => $cookies]);
+                        if ($response->getStatusCode() === 200) {
+                            GeneralUtility::writeFileToTypo3tempDir($filename, $response->getBody()->getContents());
+                            $fileExists = true;
+                            break;
+                        }
+                    } catch (RequestException $e) {
+                    }
                 }
             } catch (RequestException $e) {
             }
