@@ -10,6 +10,11 @@
     cursor: pointer;
 }
 
+.social-gdpr-google-maps,
+.social-gdpr-osm-map {
+    background-color: #90dfaa;
+}
+
 .social-gdpr-youtube-video img.videostub,
 .social-gdpr-vimeo-video img.videostub,
 .social-gdpr-google-maps img.mapstub,
