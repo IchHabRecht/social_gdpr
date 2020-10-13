@@ -1,3 +1,7 @@
+2020-10-13         [RELEASE] Release of social_gdpr 3.0.2 (Nicole Cordes)
+2020-10-07 ae3f3b0 [BUGFIX] Use flexible scaling for OpenStreetMap maps (Nicole Cordes)
+2020-10-07 ec7aa93 [BUGFIX] Add default background to maps (Nicole Cordes)
+
 2020-10-01         [RELEASE] Release of social_gdpr 3.0.1 (Nicole Cordes)
 2020-10-01 d02a7ba [BUGFIX] Use proper scaling for OpenStreetMap maps (Nicole Cordes)
 
