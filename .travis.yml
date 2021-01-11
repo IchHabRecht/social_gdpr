@@ -24,8 +24,6 @@ jobs:
     fast_finish: true
     allow_failures:
         -   if: type != cron
-            env: TYPO3=dev-master
-        -   if: type != cron
             env: TYPO3=10.4.x-dev
         -   if: type != cron
             env: TYPO3=9.5.x-dev
@@ -110,6 +108,8 @@ jobs:
         -   stage: 🚢 to ter
             if: tag IS present AND env(TYPO3_ORG_USERNAME) IS present AND env(TYPO3_ORG_PASSWORD) IS present
             php: 7.0
+            before_install:
+                - composer self-update --1
             script:
                 - >
                     echo;
@@ -180,7 +180,8 @@ jobs:
                         echo "Merging log and coverage files";
                         echo;
                         echo;
-                        composer require --no-progress --no-suggest --update-with-all-dependencies nimut/phpunit-merger;
+                        composer require --no-progress --no-suggest --no-update nimut/phpunit-merger;
+                        composer update;
                         .Build/bin/phpunit-merger coverage .Log/coverage/ .Log/coverage.xml;
                         .Build/bin/phpunit-merger log .Log/junit/ .Log/junit.xml;
                     fi
@@ -202,9 +203,6 @@ jobs:
                 - composer config prefer-stable true
                 - composer require --no-progress --no-suggest --no-update typo3/cms-core:"@dev"
             php: 7.4
-            env: TYPO3=dev-master
-        -   <<: *dev-tests
-            php: 7.4
             env: TYPO3=10.4.x-dev
         -   <<: *dev-tests
             php: 7.4
@@ -214,9 +212,6 @@ jobs:
             env: TYPO3=8.7.x-dev
         -   <<: *dev-tests
             php: 7.3
-            env: TYPO3=dev-master
-        -   <<: *dev-tests
-            php: 7.3
             env: TYPO3=10.4.x-dev
         -   <<: *dev-tests
             php: 7.3
@@ -224,9 +219,6 @@ jobs:
         -   <<: *dev-tests
             php: 7.3
             env: TYPO3=8.7.x-dev
-        -   <<: *dev-tests
-            php: 7.2
-            env: TYPO3=dev-master
         -   <<: *dev-tests
             php: 7.2
             env: TYPO3=10.4.x-dev
@@ -253,9 +245,6 @@ jobs:
                 - composer update
                 - git checkout composer.json
             php: 7.4
-            env: TYPO3=dev-master
-        -   <<: *lowest-tests
-            php: 7.4
             env: TYPO3=^10.4
         -   <<: *lowest-tests
             php: 7.4
@@ -274,9 +263,6 @@ jobs:
             env: TYPO3=8.7.x-dev
         -   <<: *lowest-tests
             php: 7.3
-            env: TYPO3=dev-master
-        -   <<: *lowest-tests
-            php: 7.3
             env: TYPO3=^10.4
         -   <<: *lowest-tests
             php: 7.3
@@ -293,9 +279,6 @@ jobs:
         -   <<: *lowest-tests
             php: 7.3
             env: TYPO3=8.7.x-dev
-        -   <<: *lowest-tests
-            php: 7.2
-            env: TYPO3=dev-master
         -   <<: *lowest-tests
             php: 7.2
             env: TYPO3=^10.4
