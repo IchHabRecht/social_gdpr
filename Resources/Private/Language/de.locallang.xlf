@@ -18,6 +18,20 @@
             <trans-unit id="osm_notice">
                 <target><![CDATA[Dies ist eine OpenStreetMap Karte. Wenn Sie auf diese Karte klicken, stimmen Sie der <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">Datenschutzerklärung</a> der OpenStreetMap Foundation (OSMF) zu. Außerdem stimmen Sie unserer %s zu.]]></target>
             </trans-unit>
+
+			<!-- A11Y -->
+			<trans-unit id="youtube_aria-label">
+				<target>Youtube video laden</target>
+			</trans-unit>
+			<trans-unit id="vimeo_aria-label">
+				<target>Vimeo video laden</target>
+			</trans-unit>
+			<trans-unit id="google-maps_aria-label">
+				<target>Google Map laden</target>
+			</trans-unit>
+			<trans-unit id="osm_aria-label">
+				<target>OpenStreetMap laden</target>
+			</trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,10 +1,28 @@
 <div class="social-gdpr-osm-iframe">
-    <div class="social-gdpr-osm-map" id="osm{data.uid}" style="{f:if(condition: data.preview, then: 'background-image: url(\'{data.preview}\'); ')}{f:if(condition: data.height, then: 'height: {data.height}; ')}{f:if(condition: data.width, then: 'width: {data.width};')}">
-        <div class="social-gdpr-osm-iframe-disarmed" data-iframe="{data.iframeHash}">
-            <img src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/maps_button.svg')}" alt="" class="mapstub" height="100" width="100" />
+    <button
+        type="button"
+        aria-label="{f:translate(key: 'osm_aria-label', extensionName: 'social_gdpr')}"
+        aria-describedby="osm-notice{data.uid}"
+        class="social-gdpr-osm-map"
+        id="osm{data.uid}"
+        style="{f:if(condition: data.preview, then: 'background-image: url(\'{data.preview}\'); ')}{f:if(condition: data.height, then: 'height: {data.height}; ')}{f:if(condition: data.width, then: 'width: {data.width};')}"
+    >
+        <div
+            class="social-gdpr-osm-iframe-disarmed"
+            data-iframe="{data.iframeHash}"
+        >
+            <img
+                src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/maps_button.svg')}"
+                alt=""
+                class="mapstub"
+                height="100"
+                width="100"
+                role="presentation"
+                aria-hidden="true"
+            />
             <div class="social-gdpr-osm-iframe-notice">
-                <p>{f:translate(id: 'osm_notice', extensionName: 'social_gdpr', arguments: {0: '{f:translate(id: "privacy_policy", extensionName: "social_gdpr")->f:link.typolink(parameter: "{settings.privacyPid}")}'})->f:format.raw()}</p>
+                <p id="osm-notice{data.uid}">{f:translate(id: 'osm_notice', extensionName: 'social_gdpr', arguments: {0: '{f:translate(id: "privacy_policy", extensionName: "social_gdpr")->f:link.typolink(parameter: "{settings.privacyPid}")}'})->f:format.raw()}</p>
             </div>
         </div>
-    </div>
+    </button>
 </div>
