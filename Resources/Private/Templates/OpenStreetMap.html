@@ -1,6 +1,6 @@
 <div class="social-gdpr-osm-iframe">
-    <button
-        type="button"
+    <div
+        tabindex="0"
         aria-label="{f:translate(key: 'osm_aria-label', extensionName: 'social_gdpr')}"
         aria-describedby="osm-notice{data.uid}"
         class="social-gdpr-osm-map"
@@ -24,5 +24,5 @@
                 <p id="osm-notice{data.uid}">{f:translate(id: 'osm_notice', extensionName: 'social_gdpr', arguments: {0: '{f:translate(id: "privacy_policy", extensionName: "social_gdpr")->f:link.typolink(parameter: "{settings.privacyPid}")}'})->f:format.raw()}</p>
             </div>
         </div>
-    </button>
+    </div>
 </div>
