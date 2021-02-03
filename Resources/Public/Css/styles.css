@@ -3,7 +3,11 @@
 .social-gdpr-google-maps,
 .social-gdpr-osm-map {
     position: relative;
+    min-width: 315px;
     min-height: 315px;
+    border: 0;
+    margin: 0;
+    padding: 0;
     background-position: 50% 50%;
     background-size: cover;
     background-repeat: no-repeat;
