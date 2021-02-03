@@ -1,25 +1,7 @@
 <div class="social-gdpr-vimeo-iframe">
-    <div
-        tabindex="0"
-        aria-label="{f:translate(key: 'vimeo_aria-label', extensionName: 'social_gdpr')}"
-        aria-describedby="vm-notice{data.uid}"
-        class="social-gdpr-vimeo-video"
-        id="vm{data.uid}"
-        style="{f:if(condition: data.preview, then: 'background-image: url(\'{data.preview}\'); ')}{f:if(condition: data.height, then: 'height: {data.height}; ')}{f:if(condition: data.width, then: 'width: {data.width};')}"
-    >
-        <div
-            class="social-gdpr-vimeo-iframe-disarmed"
-            data-iframe="{data.iframeHash}"
-        >
-            <img
-                src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/play_button.svg')}"
-                alt=""
-                class="videostub"
-                height="100"
-                width="100"
-                role="presentation"
-                aria-hidden="true"
-            />
+    <div class="social-gdpr-vimeo-video" id="vm{data.uid}" style="{f:if(condition: data.preview, then: 'background-image: url(\'{data.preview}\'); ')}{f:if(condition: data.height, then: 'height: {data.height}; ')}{f:if(condition: data.width, then: 'width: {data.width};')}" aria-label="{f:translate(key: 'vimeo_aria_label', extensionName: 'social_gdpr')}" aria-describedby="vm-notice{data.uid}" tabindex="0">
+        <div class="social-gdpr-vimeo-iframe-disarmed" data-iframe="{data.iframeHash}">
+            <img src="{f:uri.image(src:'EXT:social_gdpr/Resources/Public/Images/play_button.svg')}" alt="" class="videostub" height="100" width="100" aria-hidden="true" role="presentation" />
             <div class="social-gdpr-vimeo-iframe-notice">
                 <p id="vm-notice{data.uid}">{f:translate(id: 'vimeo_notice', extensionName: 'social_gdpr', arguments: {0: '{f:translate(id: "privacy_policy", extensionName: "social_gdpr")->f:link.typolink(parameter: "{settings.privacyPid}")}'})->f:format.raw()}</p>
             </div>

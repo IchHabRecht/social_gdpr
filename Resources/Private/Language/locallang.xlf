@@ -9,29 +9,27 @@
             <trans-unit id="youtube_notice">
                 <source><![CDATA[This is a YouTube video. If you click on this video you agree to the <a href="https://policies.google.com/privacy?hl=en" target="_blank">privacy &amp; terms</a> of Google and you also agree to our %s.]]></source>
             </trans-unit>
+            <trans-unit id="youtube_aria_label">
+                <source>Load Youtube video</source>
+            </trans-unit>
             <trans-unit id="vimeo_notice">
-                <source><![CDATA[This is a Vimeo Video. If you click on this video you agree to the <a href="https://vimeo.com/cookie_policy" target="_blank">cookie policy</a> of Vimeo and you also agree to our %s.]]></source>
+                <source><![CDATA[This is a Vimeo video. If you click on this video you agree to the <a href="https://vimeo.com/cookie_policy" target="_blank">cookie policy</a> of Vimeo and you also agree to our %s.]]></source>
+            </trans-unit>
+            <trans-unit id="vimeo_aria_label">
+                <source>Load Vimeo video</source>
             </trans-unit>
             <trans-unit id="google_maps_notice">
-                <source><![CDATA[This is a Google Map map. If you click on this map you agree to the <a href="https://policies.google.com/privacy?hl=en-US" target="_blank">privacy policy</a> of Google and you also agree to our %s.]]></source>
+                <source><![CDATA[This is a Google Maps map. If you click on this map you agree to the <a href="https://policies.google.com/privacy?hl=en-US" target="_blank">privacy policy</a> of Google and you also agree to our %s.]]></source>
+            </trans-unit>
+            <trans-unit id="google_maps_aria_label">
+                <source>Load Google Maps map</source>
             </trans-unit>
             <trans-unit id="osm_notice">
                 <source><![CDATA[This is an OpenStreetMap map. If you click on this map you agree to the <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">Privacy Policy</a> of the OpenStreetMap Foundation (OSMF) and you also agree to our %s.]]></source>
             </trans-unit>
-
-			<!-- A11Y -->
-			<trans-unit id="youtube_aria-label">
-				<source>load Youtube video</source>
-			</trans-unit>
-			<trans-unit id="vimeo_aria-label">
-				<source>load Vimeo video</source>
-			</trans-unit>
-			<trans-unit id="google-maps_aria-label">
-				<source>load Google Map</source>
-			</trans-unit>
-			<trans-unit id="osm_aria-label">
-				<source>load OpenStreetMap</source>
-			</trans-unit>
+            <trans-unit id="osm_aria_label">
+                <source>Load OpenStreetMap map</source>
+            </trans-unit>
         </body>
     </file>
 </xliff>
