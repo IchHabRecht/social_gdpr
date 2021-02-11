@@ -7,25 +7,25 @@
                 <target>Datenschutzrichtlinie</target>
             </trans-unit>
             <trans-unit id="youtube_notice">
-                <target><![CDATA[Dies ist ein YouTube Video. Wenn Sie auf dieses Video klicken, stimmen Sie der <a href="https://policies.google.com/privacy?hl=de" target="_blank">Datenschutzerklärung & Nutzungsbedingungen</a> von Google zu. Außerdem stimmen Sie unserer %s zu.]]></target>
+                <target><![CDATA[Dies ist ein YouTube Video. Wenn Sie auf dieses Video klicken, stimmen Sie der <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noreferrer">Datenschutzerklärung & Nutzungsbedingungen</a> von Google zu. Außerdem stimmen Sie unserer %s zu.]]></target>
             </trans-unit>
             <trans-unit id="youtube_aria_label">
                 <target>Youtube Video laden</target>
             </trans-unit>
             <trans-unit id="vimeo_notice">
-                <target><![CDATA[Dies ist ein Vimeo Video. Wenn Sie auf dieses Video klicken, stimmen Sie der <a href="https://vimeo.com/cookie_policy" target="_blank">Cookie-Richtlinie</a> von Vimeo zu. Außerdem stimmen Sie unserer %s zu.]]></target>
+                <target><![CDATA[Dies ist ein Vimeo Video. Wenn Sie auf dieses Video klicken, stimmen Sie der <a href="https://vimeo.com/cookie_policy" target="_blank" rel="noreferrer">Cookie-Richtlinie</a> von Vimeo zu. Außerdem stimmen Sie unserer %s zu.]]></target>
             </trans-unit>
             <trans-unit id="vimeo_aria_label">
                 <target>Vimeo Video laden</target>
             </trans-unit>
             <trans-unit id="google_maps_notice">
-                <target><![CDATA[Dies ist eine Google Maps Karte. Wenn Sie auf diese Karte klicken, stimmen Sie der <a href="https://policies.google.com/privacy?hl=de-DE" target="_blank">Datenschutzerklärung</a> von Google zu. Außerdem stimmen Sie unserer %s zu.]]></target>
+                <target><![CDATA[Dies ist eine Google Maps Karte. Wenn Sie auf diese Karte klicken, stimmen Sie der <a href="https://policies.google.com/privacy?hl=de-DE" target="_blank" rel="noreferrer">Datenschutzerklärung</a> von Google zu. Außerdem stimmen Sie unserer %s zu.]]></target>
             </trans-unit>
             <trans-unit id="google_maps_aria_label">
                 <target>Google Maps Karte laden</target>
             </trans-unit>
             <trans-unit id="osm_notice">
-                <target><![CDATA[Dies ist eine OpenStreetMap Karte. Wenn Sie auf diese Karte klicken, stimmen Sie der <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank">Datenschutzerklärung</a> der OpenStreetMap Foundation (OSMF) zu. Außerdem stimmen Sie unserer %s zu.]]></target>
+                <target><![CDATA[Dies ist eine OpenStreetMap Karte. Wenn Sie auf diese Karte klicken, stimmen Sie der <a href="https://wiki.osmfoundation.org/wiki/Privacy_Policy" target="_blank" rel="noreferrer">Datenschutzerklärung</a> der OpenStreetMap Foundation (OSMF) zu. Außerdem stimmen Sie unserer %s zu.]]></target>
             </trans-unit>
             <trans-unit id="osm_aria_label">
                 <target>OpenStreetMap Karte laden</target>
