@@ -22,7 +22,7 @@ class YoutubeImageService
      */
     protected $possiblePreviewNames = [
         'maxresdefault.jpg',
-        'mqdefault.jpg',
+        'sddefault.jpg',
         'hqdefault.jpg',
         '0.jpg',
     ];
