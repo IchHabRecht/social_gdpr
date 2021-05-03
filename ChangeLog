@@ -1,3 +1,13 @@
+2021-05-03         [RELEASE] Release of social_gdpr 3.1.0 (Nicole Cordes)
+2021-05-03 00b0dc5 [TASK] Update supporting files to EXT:my_skeleton 0.4.3 (Nicole Cordes)
+2021-04-30 55910e9 [BUGFIX] Adjust YouTube possiblePreviewNames (Nicole Cordes)
+2021-02-10 0064120 [TASK] added rel="noreferrer" to external Links (SvenJuergens)
+2021-02-03 3d189c0 Slightly reformat templates and language files (Nicole Cordes)
+2021-01-27 0e84977 [TASK] improve accessiblity change (Franz Kugelmann)
+2021-01-21 7dd07c5 [FEATURE] make 2-click elements more accessible (Franz Kugelmann)
+2021-01-11 66ba6bd [TASK] Update supporting files to EXT:my_skeleton 0.4.2 (Nicole Cordes)
+2020-10-25 d97fb47 [TASK] Update supporting files to EXT:my_skeleton 0.4.1 (Nicole Cordes)
+
 2020-10-13         [RELEASE] Release of social_gdpr 3.0.2 (Nicole Cordes)
 2020-10-07 ae3f3b0 [BUGFIX] Use flexible scaling for OpenStreetMap maps (Nicole Cordes)
 2020-10-07 ec7aa93 [BUGFIX] Add default background to maps (Nicole Cordes)
