@@ -3,9 +3,7 @@
     "description": "Show social media after user confirmation",
     "type": "typo3-cms-extension",
     "homepage": "https://github.com/IchHabRecht/social_gdpr",
-    "license": [
-        "GPL-2.0-or-later"
-    ],
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Nicole Cordes",
@@ -14,6 +12,7 @@
         }
     ],
     "require": {
+        "php": ">= 7.0, < 7.5",
         "typo3/cms-core": "^8.7 || ^9.5 || ^10.4"
     },
     "require-dev": {
