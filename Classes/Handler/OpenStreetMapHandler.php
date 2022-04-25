@@ -43,13 +43,13 @@ class OpenStreetMapHandler implements HandlerInterface
     }
 
     /**
-     * @return Match[]
+     * @return ContentMatch[]
      */
     public function getMatches(): array
     {
         return array_map(
             function ($match) {
-                return new Match(
+                return new ContentMatch(
                     $match[0],
                     [
                         'uid' => StringUtility::getUniqueId(),

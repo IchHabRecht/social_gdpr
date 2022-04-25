@@ -42,7 +42,7 @@ class VimeoHandler implements HandlerInterface
     {
         return array_map(
             function ($match) {
-                return new Match(
+                return new ContentMatch(
                     $match[0],
                     [
                         'uid' => StringUtility::getUniqueId(),

@@ -9,7 +9,7 @@ interface HandlerInterface
     public function hasMatches(string $content): bool;
 
     /**
-     * @return Match[]
+     * @return ContentMatch[]
      */
     public function getMatches(): array;
 }

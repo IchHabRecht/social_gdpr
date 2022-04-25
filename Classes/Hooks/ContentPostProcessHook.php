@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace IchHabRecht\SocialGdpr\Hooks;
 
+use IchHabRecht\SocialGdpr\Handler\ContentMatch;
 use IchHabRecht\SocialGdpr\Handler\HandlerInterface;
-use IchHabRecht\SocialGdpr\Handler\Match;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
@@ -39,7 +39,7 @@ class ContentPostProcessHook
             if ($handler->hasMatches($content)) {
                 $matches = $handler->getMatches();
                 foreach ($matches as $match) {
-                    if (!$match instanceof Match) {
+                    if (!$match instanceof ContentMatch) {
                         throw new \RuntimeException(
                             'Match needs to be an instance of \\IchHabRecht\\SocialGdpr\\Handler\\Match',
                             1587741462

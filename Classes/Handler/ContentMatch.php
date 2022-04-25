@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace IchHabRecht\SocialGdpr\Handler;
 
-class Match
+class ContentMatch
 {
     /**
      * @var array
