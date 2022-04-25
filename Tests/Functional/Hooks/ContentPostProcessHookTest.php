@@ -33,7 +33,7 @@ class ContentPostProcessHookTest extends FunctionalTestCase
         ],
     ];
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -41,8 +41,8 @@ class ContentPostProcessHookTest extends FunctionalTestCase
         $this->setUpFrontendRootPage(
             1,
             [
-                'EXT:social_gdpr/Configuration/TypoScript/setup.txt',
-                'EXT:social_gdpr/Tests/Functional/Fixtures/TypoScript/social_gdpr.txt',
+                'EXT:social_gdpr/Configuration/TypoScript/setup.typoscript',
+                'EXT:social_gdpr/Tests/Functional/Fixtures/TypoScript/social_gdpr.typoscript',
             ]
         );
     }
@@ -58,7 +58,7 @@ class ContentPostProcessHookTest extends FunctionalTestCase
 
         $content = $response->getContent();
 
-        $this->assertContains('/typo3conf/ext/social_gdpr/Resources/Public/Images/youtube_play_button.svg', $content);
-        $this->assertContains('/typo3conf/ext/social_gdpr/Resources/Public/Images/play_button.svg', $content);
+        $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/youtube_play_button.svg', $content);
+        $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/play_button.svg', $content);
     }
 }

@@ -13,7 +13,7 @@ abstract class AbstractHandlerTest extends UnitTestCase
      */
     protected $content;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 
