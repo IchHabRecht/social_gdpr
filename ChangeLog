@@ -1,3 +1,7 @@
+2022-04-25         [RELEASE] Release of social_gdpr 3.2.0 (Nicole Cordes)
+2022-04-25 70f524c [TASK] Add compatibility to PHP 8.1 (Nicole Cordes)
+2022-04-25 e4d174a [FEATURE] Add compatibility to TYPO3 11.5 (Nicole Cordes)
+
 2021-05-03         [RELEASE] Release of social_gdpr 3.1.0 (Nicole Cordes)
 2021-05-03 00b0dc5 [TASK] Update supporting files to EXT:my_skeleton 0.4.3 (Nicole Cordes)
 2021-04-30 55910e9 [BUGFIX] Adjust YouTube possiblePreviewNames (Nicole Cordes)
