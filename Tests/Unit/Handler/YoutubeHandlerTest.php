@@ -6,6 +6,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\YoutubeHandler;
 use IchHabRecht\SocialGdpr\Service\YoutubeImageService;
+use Prophecy\Prophet;
 
 class YoutubeHandlerTest extends AbstractHandlerTest
 {
@@ -22,7 +23,7 @@ class YoutubeHandlerTest extends AbstractHandlerTest
 
     protected function getYoutubeHandler(): YoutubeHandler
     {
-        $youtubeImageService = $this->prophesize(YoutubeImageService::class);
+        $youtubeImageService = (new Prophet())->prophesize(YoutubeImageService::class);
         $youtubeImageService->getPreviewImage('yiJjpKzCVE4')->shouldBeCalled()->willReturn('url://yiJjpKzCVE4');
         $youtubeImageService->getPreviewImage('LMx4SmK4s0U')->shouldBeCalled()->willReturn('url://LMx4SmK4s0U');
         $youtubeImageService->getPreviewImage('9zoHWNR5OcQ')->shouldBeCalled()->willReturn('url://9zoHWNR5OcQ');
