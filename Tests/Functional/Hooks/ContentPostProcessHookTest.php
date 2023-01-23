@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace IchHabRecht\SocialGdpr\Tests\Functional\Hooks;
 
-use Nimut\TestingFramework\TestCase\FunctionalTestCase;
+use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
+use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class ContentPostProcessHookTest extends FunctionalTestCase
 {
@@ -37,8 +40,10 @@ class ContentPostProcessHookTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->importDataSet('ntf://Database/pages.xml');
-        $this->setUpFrontendRootPage(
+        $fixturePath = ORIGINAL_ROOT . 'typo3conf/ext/social_gdpr/Tests/Functional/Fixtures/Database/';
+        $this->importCSVDataSet($fixturePath . 'pages.csv');
+
+        $this->setUpFrontendPage(
             1,
             [
                 'EXT:social_gdpr/Configuration/TypoScript/setup.typoscript',
@@ -52,13 +57,34 @@ class ContentPostProcessHookTest extends FunctionalTestCase
      */
     public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix()
     {
-        $response = $this->getFrontendResponse(1);
+        $request = new InternalRequest('http://localhost/');
 
-        $this->assertSame('success', $response->getStatus());
+        if (method_exists($this, 'executeFrontendRequest')) {
+            $response = $this->executeFrontendRequest($request);
+        } else {
+            $response = $this->executeFrontendSubRequest($request);
+        }
 
-        $content = $response->getContent();
+        $this->assertEquals(200, $response->getStatusCode());
+
+        $content = (string)$response->getBody();
 
         $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/youtube_play_button.svg', $content);
         $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/play_button.svg', $content);
+    }
+
+    protected function setUpFrontendPage($pageId, array $typoScriptFiles = [], array $templateValues = [])
+    {
+        parent::setUpFrontendRootPage($pageId, $typoScriptFiles, $templateValues);
+
+        $path = Environment::getConfigPath() . '/sites/page_' . $pageId . '/';
+        $target = $path . 'config.yaml';
+        $file = ORIGINAL_ROOT . 'typo3conf/ext/social_gdpr/Tests/Functional/Fixtures/Frontend/site.yaml';
+        if (!file_exists($target)) {
+            GeneralUtility::mkdir_deep($path);
+            $fileContent = file_get_contents($file);
+            $fileContent = str_replace('\'{rootPageId}\'', (string)$pageId, $fileContent);
+            GeneralUtility::writeFile($target, $fileContent);
+        }
     }
 }

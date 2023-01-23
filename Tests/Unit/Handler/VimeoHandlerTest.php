@@ -6,6 +6,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\VimeoHandler;
 use IchHabRecht\SocialGdpr\Service\VimeoImageService;
+use Prophecy\Prophet;
 
 class VimeoHandlerTest extends AbstractHandlerTest
 {
@@ -22,7 +23,7 @@ class VimeoHandlerTest extends AbstractHandlerTest
 
     protected function getVimeoHandler(): VimeoHandler
     {
-        $vimeoImageService = $this->prophesize(VimeoImageService::class);
+        $vimeoImageService = (new Prophet())->prophesize(VimeoImageService::class);
         $vimeoImageService->getPreviewImage('143018597')->shouldBeCalled()->willReturn('url://143018597');
         $vimeoImageService->getPreviewImage('238376269')->shouldBeCalled()->willReturn('url://238376269');
         $vimeoImageService->getPreviewImage('238386951')->shouldBeCalled()->willReturn('url://238386951');
