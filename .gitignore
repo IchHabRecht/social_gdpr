@@ -1,6 +1,8 @@
 /.Build/
 /.idea/
 /.Log/
+/config/
+/var/
 /.php_cs
 /.php_cs.cache
 /composer.lock
