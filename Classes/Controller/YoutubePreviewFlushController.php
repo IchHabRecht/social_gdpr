@@ -27,6 +27,7 @@ class YoutubePreviewFlushController
         if ($result === false) {
             return new JsonResponse(['status' => AbstractMessage::ERROR, 'message' => 'Something went wrong']);
         }
+
         return new JsonResponse(['status' => AbstractMessage::OK, 'message' => 'Preview image deleted']);
     }
 }
