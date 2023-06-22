@@ -1,4 +1,5 @@
 <?php
+
 return [
     'youtube_preview_flush' => [
         'path' => '/youtube-preview/flush',
