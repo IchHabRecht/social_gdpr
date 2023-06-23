@@ -63,7 +63,7 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
             'class' => 'btn btn-default',
             'data-preview-image-id' => $id,
             'data-preview-image-type' => $fileExtension,
-            'title' => 'Flush preview image'
+            'title' => 'Flush preview image',
         ];
         $icon = $iconFactory->getIcon('actions-delete', Icon::SIZE_SMALL, $iconRegistry->getIconIdentifierForFileExtension($fileExtension))->render();
         $controlItems['youtubeFlush'] = '<button' . GeneralUtility::implodeAttributes($attributes, true) . '> ' . $icon . ' </button>';
