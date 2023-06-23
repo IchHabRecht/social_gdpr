@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\PathUtility;
 
-class YoutubeImageService
+class YoutubeImageService implements PreviewImageServiceInterface
 {
     /**
      * @var string
@@ -43,7 +43,7 @@ class YoutubeImageService
         $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
     }
 
-    public function getPreviewImage($id): string
+    public function getPreviewImage(string $id): string
     {
         if (!$this->extensionConfiguration->isEnabled('youtubePreview')) {
             return '';
@@ -68,5 +68,26 @@ class YoutubeImageService
         }
 
         return $fileExists ? PathUtility::getAbsoluteWebPath($filename) : '';
+    }
+
+    public function deletePreviewImage(string $id): void
+    {
+        $absolutePath = $this->getAbsoluteFileName($id);
+        unlink($absolutePath);
+    }
+
+    public function hasPreviewImage(string $id): bool
+    {
+        $absolutePath = $this->getAbsoluteFileName($id);
+
+        return file_exists($absolutePath);
+    }
+
+    protected function getAbsoluteFileName(string $id): string
+    {
+        $fileName = 'youtube_' . md5($id) . '.jpg';
+        $absoluteFileName = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/' . $fileName);
+
+        return $absoluteFileName;
     }
 }

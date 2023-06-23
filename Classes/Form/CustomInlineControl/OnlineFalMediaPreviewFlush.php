@@ -4,15 +4,17 @@ declare(strict_types=1);
 
 namespace IchHabRecht\SocialGdpr\Form\CustomInlineControl;
 
+use IchHabRecht\SocialGdpr\Service\PreviewImageServiceRegistry;
 use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Imaging\IconRegistry;
 use TYPO3\CMS\Core\Page\PageRenderer;
 use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class YoutubePreviewFlush implements InlineElementHookInterface
+class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
 {
     public function renderForeignRecordHeaderControl_preProcess(
         $parentUid,
@@ -36,25 +38,34 @@ class YoutubePreviewFlush implements InlineElementHookInterface
         if ($foreignTable !== 'sys_file_reference') {
             return;
         }
-        if (($childRecord['uid_local'][0]['row']['extension'] ?? '') !== 'youtube') {
+        $fileExtension = $childRecord['uid_local'][0]['row']['extension'] ?? '';
+        $previewImageServiceRegistry = GeneralUtility::makeInstance(PreviewImageServiceRegistry::class);
+        $onlineMediaRegistry = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
+        if (
+            !$previewImageServiceRegistry->hasPreviewImageService($fileExtension)
+            || !$onlineMediaRegistry->hasOnlineMediaHelper($fileExtension)
+        ) {
             return;
         }
+
         $pageRenderer = GeneralUtility::makeInstance(PageRenderer::class);
         $resourceFactory = GeneralUtility::makeInstance(ResourceFactory::class);
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+        $iconRegistry = GeneralUtility::makeInstance(IconRegistry::class);
 
-        $pageRenderer->loadRequireJsModule('TYPO3/CMS/SocialGdpr/Backend/YoutubePreviewFlush');
+        $pageRenderer->loadRequireJsModule('TYPO3/CMS/SocialGdpr/Backend/PreviewImageFlush');
         $fileUid = (int)$childRecord['uid_local'][0]['row']['uid'];
         $file = $resourceFactory->getFileObject($fileUid);
-        $youtubeHelper = GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class)->getOnlineMediaHelper($file);
-        $youtubeId = $youtubeHelper->getOnlineMediaId($file);
+        $onlineMediaHelper = $onlineMediaRegistry->getOnlineMediaHelper($file);
+        $id = $onlineMediaHelper->getOnlineMediaId($file);
         $attributes = [
             'type' => 'button',
             'class' => 'btn btn-default',
-            'data-youtube-id' => $youtubeId,
-            'title' => 'Flush YouTube Thumbnail for id ' . $youtubeId,
+            'data-preview-image-id' => $id,
+            'data-preview-image-type' => $fileExtension,
+            'title' => 'Flush preview image'
         ];
-        $icon = $iconFactory->getIcon('mimetypes-media-video-youtube', Icon::SIZE_SMALL)->render();
+        $icon = $iconFactory->getIcon('actions-delete', Icon::SIZE_SMALL, $iconRegistry->getIconIdentifierForFileExtension($fileExtension))->render();
         $controlItems['youtubeFlush'] = '<button' . GeneralUtility::implodeAttributes($attributes, true) . '> ' . $icon . ' </button>';
     }
 }
