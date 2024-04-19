@@ -39,7 +39,7 @@ class VimeoImageService
             return '';
         }
 
-        $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/vimeo_' . md5($id) . '.jpg');
+        $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/vimeo_' . md5((string) $id) . '.jpg');
         $fileExists = file_exists($filename);
 
         if (!$fileExists) {
@@ -49,7 +49,7 @@ class VimeoImageService
                 if ($response->getStatusCode() === 200) {
                     $json = json_decode($response->getBody()->getContents(), true);
                     if (!empty($json[0]['thumbnail_large']) || !empty($json[0]['thumbnail_medium']) || !empty($json[0]['thumbnail_small'])) {
-                        $thumbnailUri = $json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium'] ?: $json[0]['thumbnail_small'];
+                        $thumbnailUri = ($json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium']) ?: $json[0]['thumbnail_small'];
                         $thumbnailResponse = $this->requestFactory->request($thumbnailUri);
                         if ($thumbnailResponse->getStatusCode() === 200) {
                             GeneralUtility::writeFileToTypo3tempDir($filename, $thumbnailResponse->getBody()->getContents());
@@ -57,7 +57,7 @@ class VimeoImageService
                         }
                     }
                 }
-            } catch (RequestException $e) {
+            } catch (RequestException) {
             }
         }
 

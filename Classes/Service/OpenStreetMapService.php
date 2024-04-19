@@ -40,7 +40,7 @@ class OpenStreetMapService
             return '';
         }
 
-        $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/osm_' . md5($bbox) . '.png');
+        $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/osm_' . md5((string) $bbox) . '.png');
         $fileExists = file_exists($filename);
 
         if (!$fileExists) {
@@ -56,10 +56,10 @@ class OpenStreetMapService
                             $fileExists = true;
                             break;
                         }
-                    } catch (RequestException $e) {
+                    } catch (RequestException) {
                     }
                 }
-            } catch (RequestException $e) {
+            } catch (RequestException) {
             }
         }
 

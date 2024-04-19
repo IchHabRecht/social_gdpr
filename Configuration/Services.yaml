@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  IchHabRecht\SocialGdpr\:
+    resource: '../Classes/*'
+
+  # replace original social media content with placeholder
+  IchHabRecht\SocialGdpr\EventListener\AfterContentCreation:
+    tags:
+      - name: 'event.listener'
+        identifier: 'social-gdpr/replaceSocialMedia'

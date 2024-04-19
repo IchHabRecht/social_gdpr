@@ -49,7 +49,7 @@ class YoutubeImageService
             return '';
         }
 
-        $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/youtube_' . md5($id) . '.jpg');
+        $filename = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/youtube_' . md5((string) $id) . '.jpg');
         $fileExists = file_exists($filename);
 
         if (!$fileExists) {
@@ -62,7 +62,7 @@ class YoutubeImageService
                         $fileExists = true;
                         break;
                     }
-                } catch (RequestException $e) {
+                } catch (RequestException) {
                 }
             }
         }
