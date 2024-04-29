@@ -59,7 +59,7 @@ class ContentPostProcessHookTest extends FunctionalTestCase
     {
         $request = new InternalRequest('http://localhost/');
 
-        if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() < 11) {
+        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 11) {
             $response = $this->executeFrontendRequest($request);
         } else {
             $response = $this->executeFrontendSubRequest($request);
