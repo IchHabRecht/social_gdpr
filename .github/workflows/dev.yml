@@ -15,7 +15,7 @@ jobs:
             fail-fast: false
             matrix:
                 os: [ 'ubuntu-latest' ]
-                typo3: [ '10.4.x-dev', '11.5.x-dev' ]
+                typo3: [ '10.4.x-dev', '11.5.x-dev', '12.4.x-dev' ]
                 php: [ '7.4', '8.0', '8.1' ]
                 dependency-version: [ 'lowest', 'stable' ]
                 exclude:
@@ -23,6 +23,10 @@ jobs:
                         php: '8.0'
                     -   typo3: '10.4.x-dev'
                         php: '8.1'
+                    -   typo3: '12.4.x-dev'
+                        php: '7.4'
+                    -   typo3: '12.4.x-dev'
+                        php: '8.0'
 
         runs-on: ${{ matrix.os }}
 
