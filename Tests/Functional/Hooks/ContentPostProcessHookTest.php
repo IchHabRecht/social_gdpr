@@ -5,36 +5,36 @@ declare(strict_types=1);
 namespace IchHabRecht\SocialGdpr\Tests\Functional\Hooks;
 
 use TYPO3\CMS\Core\Core\Environment;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class ContentPostProcessHookTest extends FunctionalTestCase
 {
-    /**
-     * @var array
-     */
-    protected $testExtensionsToLoad = [
-        'typo3conf/ext/social_gdpr',
-    ];
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
 
-    /**
-     * @var array
-     */
-    protected $configurationToUseInTestInstance = [
-        'EXT' => [
-            'extConf' => [
-                'social_gdpr' => 'a:3:{s:14:"youtubePreview";s:1:"1";s:12:"vimeoPreview";s:1:"1";s:10:"osmPreview";s:1:"1";}',
+        $this->testExtensionsToLoad = [
+            'typo3conf/ext/social_gdpr',
+        ];
+
+        $this->configurationToUseInTestInstance = [
+            'EXT' => [
+                'extConf' => [
+                    'social_gdpr' => 'a:3:{s:14:"youtubePreview";s:1:"1";s:12:"vimeoPreview";s:1:"1";s:10:"osmPreview";s:1:"1";}',
+                ],
             ],
-        ],
-        'EXTENSIONS' => [
-            'social_gdpr' => [
-                'osmPreview' => '0',
-                'vimeoPreview' => '0',
-                'youtubePreview' => '0',
+            'EXTENSIONS' => [
+                'social_gdpr' => [
+                    'osmPreview' => '0',
+                    'vimeoPreview' => '0',
+                    'youtubePreview' => '0',
+                ],
             ],
-        ],
-    ];
+        ];
+    }
 
     protected function setUp(): void
     {
@@ -59,7 +59,7 @@ class ContentPostProcessHookTest extends FunctionalTestCase
     {
         $request = new InternalRequest('http://localhost/');
 
-        if (method_exists($this, 'executeFrontendRequest')) {
+        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 11) {
             $response = $this->executeFrontendRequest($request);
         } else {
             $response = $this->executeFrontendSubRequest($request);
