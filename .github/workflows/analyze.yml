@@ -18,6 +18,7 @@ jobs:
         env:
             php: '8.2'
             typo3: '^12.4'
+            sonar_token: ${{ secrets.SONAR_TOKEN }}
 
         if: github.repository == 'IchHabRecht/social_gdpr'
 
@@ -66,6 +67,7 @@ jobs:
                     .Build/bin/phpunit-merger log .Log/junit/ .Log/junit.xml;
 
             -   name: SonarCloud Scan
+                if: ${{ env.sonar_token != '' }}
                 uses: sonarsource/sonarcloud-github-action@master
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
