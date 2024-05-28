@@ -1,8 +1,8 @@
 # TYPO3 Extension social_gdpr
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/ichhabrecht/social-gdpr.svg)](https://packagist.org/packages/ichhabrecht/social-gdpr)
-[![Build Status](https://img.shields.io/travis/IchHabRecht/social_gdpr/master.svg)](https://travis-ci.org/IchHabRecht/social_gdpr)
-[![StyleCI](https://styleci.io/repos/259281576/shield?branch=master)](https://styleci.io/repos/259281576)
+[![Build Status](https://github.com/IchHabRecht/social_gdpr/actions/workflows/test.yml/badge.svg)](https://github.com/IchHabRecht/social_gdpr/actions)
+[![StyleCI](https://styleci.io/repos/259281576/shield?branch=main)](https://styleci.io/repos/259281576)
 
 Show social media after user confirmation
 
