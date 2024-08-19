@@ -24,6 +24,7 @@ class YoutubeImageService implements PreviewImageServiceInterface
         'maxresdefault.jpg',
         'sddefault.jpg',
         'hqdefault.jpg',
+        'mqdefault.jpg',
         '0.jpg',
     ];
 
