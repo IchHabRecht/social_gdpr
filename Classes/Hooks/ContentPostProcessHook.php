@@ -63,7 +63,8 @@ class ContentPostProcessHook
                     );
 
                     $this->contentObjectRenderer->start($data, 'tt_content');
-                    $handlerContent = $this->contentObjectRenderer->cObjGetSingle($typoScriptFrontendController->tmpl->setup['lib.']['socialgdpr'], $typoScriptFrontendController->tmpl->setup['lib.']['socialgdpr.']);
+                    $typoScript = $this->contentObjectRenderer->getRequest()->getAttribute('frontend.typoscript')->getSetupArray();
+                    $handlerContent = $this->contentObjectRenderer->cObjGetSingle($typoScript['lib.']['socialgdpr'], $typoScript['lib.']['socialgdpr.']);
                     $content = str_replace($match->getSearch(), $handlerContent, $content);
                 }
             }
