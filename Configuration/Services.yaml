@@ -6,17 +6,3 @@ services:
 
     IchHabRecht\SocialGdpr\:
         resource: '../Classes/*'
-
-    IchHabRecht\SocialGdpr\Form\CustomInlineControl\OnlineFalMediaPreviewFlush:
-        tags:
-            -   name: event.listener
-                identifier: 'socialgdprModifyFileReferenceControlsEvent'
-                event: TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent
-                method: renderFileReferenceHeaderControl
-
-    IchHabRecht\SocialGdpr\Hooks\ContentPostProcessHook:
-        tags:
-            -   name: event.listener
-                identifier: 'socialgdprAfterCacheableContentIsGeneratedEventListener'
-                event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
-                method: replaceSocialMediaWithEvent

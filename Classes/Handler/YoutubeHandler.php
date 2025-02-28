@@ -19,9 +19,9 @@ class YoutubeHandler implements HandlerInterface
     /**
      * @var YoutubeImageService
      */
-    protected $youtubeImageService;
+    protected object $youtubeImageService;
 
-    public function __construct(YoutubeImageService $youtubeImageService = null)
+    public function __construct(?YoutubeImageService $youtubeImageService = null)
     {
         $this->youtubeImageService = $youtubeImageService ?: GeneralUtility::makeInstance(YoutubeImageService::class);
     }
@@ -41,19 +41,17 @@ class YoutubeHandler implements HandlerInterface
     public function getMatches(): array
     {
         return array_map(
-            function ($match) {
-                return new ContentMatch(
-                    $match[0],
-                    [
-                        'uid' => StringUtility::getUniqueId(),
-                        'id' => $match['id'],
-                        'iframeHash' => base64_encode($match[0]),
-                        'height' => !empty($match['height']) ? (MathUtility::canBeInterpretedAsInteger($match['height']) ? $match['height'] . 'px' : $match['height']) : 0,
-                        'width' => !empty($match['width']) ? (MathUtility::canBeInterpretedAsInteger($match['width']) ? $match['width'] . 'px' : $match['width']) : 0,
-                        'preview' => $this->youtubeImageService->getPreviewImage($match['id']),
-                    ]
-                );
-            },
+            fn($match): \IchHabRecht\SocialGdpr\Handler\ContentMatch => new ContentMatch(
+                $match[0],
+                [
+                    'uid' => StringUtility::getUniqueId(),
+                    'id' => $match['id'],
+                    'iframeHash' => base64_encode($match[0]),
+                    'height' => !empty($match['height']) ? (MathUtility::canBeInterpretedAsInteger($match['height']) ? $match['height'] . 'px' : $match['height']) : 0,
+                    'width' => !empty($match['width']) ? (MathUtility::canBeInterpretedAsInteger($match['width']) ? $match['width'] . 'px' : $match['width']) : 0,
+                    'preview' => $this->youtubeImageService->getPreviewImage($match['id']),
+                ]
+            ),
             $this->matches
         );
     }

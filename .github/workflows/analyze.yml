@@ -16,8 +16,8 @@ jobs:
         name: '✔ with SonarCloud'
 
         env:
-            php: '8.2'
-            typo3: '^12.4'
+            php: '8.3'
+            typo3: '^13.4'
             sonar_token: ${{ secrets.SONAR_TOKEN }}
 
         if: github.repository == 'IchHabRecht/social_gdpr'

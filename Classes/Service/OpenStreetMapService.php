@@ -21,14 +21,14 @@ class OpenStreetMapService
     /**
      * @var ExtensionConfiguration
      */
-    protected $extensionConfiguration;
+    protected object $extensionConfiguration;
 
     /**
      * @var RequestFactory
      */
-    protected $requestFactory;
+    protected object $requestFactory;
 
-    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
+    public function __construct(?ExtensionConfiguration $extensionConfiguration = null, ?RequestFactory $requestFactory = null)
     {
         $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
@@ -56,10 +56,10 @@ class OpenStreetMapService
                             $fileExists = true;
                             break;
                         }
-                    } catch (RequestException $e) {
+                    } catch (RequestException) {
                     }
                 }
-            } catch (RequestException $e) {
+            } catch (RequestException) {
             }
         }
 

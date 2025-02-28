@@ -19,21 +19,17 @@ class OpenStreetMapHandler implements HandlerInterface
     /**
      * @var OpenStreetMapService
      */
-    protected $openStreetMapService;
+    protected object $openStreetMapService;
 
-    public function __construct(OpenStreetMapService $openStreetMapService = null)
+    public function __construct(?OpenStreetMapService $openStreetMapService = null)
     {
         $this->openStreetMapService = $openStreetMapService ?: GeneralUtility::makeInstance(OpenStreetMapService::class);
     }
 
-    /**
-     * @param string $content
-     * @return bool
-     */
     public function hasMatches(string $content): bool
     {
         preg_match_all(
-            '/<iframe(?:(?: src="(?:(?:https?:)?\/\/)?(?:www\.)?openstreetmap\.org\/export\/embed.html\?bbox=(?<bbox>[^&]+)[^"]*?"| height="(?<height>[^"]+)"| width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
+            '/<iframe(?:(?: src="(?:(?:https?:)?\/\/)?(?:(?:www|umap)\.)?openstreetmap\.(?:org|de|fr)\/(?:export\/embed.html\?bbox=(?<bbox>[^&]+)|[a-z]{2}\/map\/)[^"]*?"| height="(?<height>[^"]+)"| width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
             $content,
             $this->matches,
             PREG_SET_ORDER
@@ -48,18 +44,16 @@ class OpenStreetMapHandler implements HandlerInterface
     public function getMatches(): array
     {
         return array_map(
-            function ($match) {
-                return new ContentMatch(
-                    $match[0],
-                    [
-                        'uid' => StringUtility::getUniqueId(),
-                        'iframeHash' => base64_encode($match[0]),
-                        'height' => !empty($match['height']) ? (MathUtility::canBeInterpretedAsInteger($match['height']) ? $match['height'] . 'px' : $match['height']) : 0,
-                        'width' => !empty($match['width']) ? (MathUtility::canBeInterpretedAsInteger($match['width']) ? $match['width'] . 'px' : $match['width']) : 0,
-                        'preview' => $this->openStreetMapService->getPreviewImage($match['bbox']),
-                    ]
-                );
-            },
+            fn($match): \IchHabRecht\SocialGdpr\Handler\ContentMatch => new ContentMatch(
+                $match[0],
+                [
+                    'uid' => StringUtility::getUniqueId(),
+                    'iframeHash' => base64_encode($match[0]),
+                    'height' => !empty($match['height']) ? (MathUtility::canBeInterpretedAsInteger($match['height']) ? $match['height'] . 'px' : $match['height']) : 0,
+                    'width' => !empty($match['width']) ? (MathUtility::canBeInterpretedAsInteger($match['width']) ? $match['width'] . 'px' : $match['width']) : 0,
+                    'preview' => $this->openStreetMapService->getPreviewImage($match['bbox']),
+                ]
+            ),
             $this->matches
         );
     }

@@ -13,8 +13,8 @@ jobs:
         name: '🚢 to TER'
 
         env:
-            php: '8.2'
-            typo3: '^12.4'
+            php: '8.3'
+            typo3: '^13.4'
             typo3_org_username: ${{ secrets.TYPO3_ORG_USERNAME }}
             typo3_org_password: ${{ secrets.TYPO3_ORG_PASSWORD }}
 
