@@ -16,6 +16,26 @@ Simply install the extension with Composer or the [Extension Manager](https://ex
 
 ## Usage
 
+@todo
+Write instructions on how to activate the extension
+by either including the typoscript or creating a record in the BE
+
+Configure the extension in settings.php
+```php
+'social_gdpr' => [
+    'osmPreview' => '0',
+    'vimeoPreview' => '0',
+    'youtubePreview' => '0',
+],
+```
+
+## Run Unit Tests
+
+```sh
+composer install
+php .Build/bin/phpunit -c phpunit.xml.dist
+```
+
 ## Community
 
 - Thanks to [elementare teilchen GmbH](https://www.elementare-teilchen.de) that sponsors the maintenance of this extension

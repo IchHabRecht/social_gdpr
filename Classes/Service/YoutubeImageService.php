@@ -30,14 +30,14 @@ class YoutubeImageService implements PreviewImageServiceInterface
     /**
      * @var ExtensionConfiguration
      */
-    protected $extensionConfiguration;
+    protected object $extensionConfiguration;
 
     /**
      * @var RequestFactory
      */
-    protected $requestFactory;
+    protected object $requestFactory;
 
-    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
+    public function __construct(?ExtensionConfiguration $extensionConfiguration = null, ?RequestFactory $requestFactory = null)
     {
         $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
@@ -62,7 +62,7 @@ class YoutubeImageService implements PreviewImageServiceInterface
                         $fileExists = true;
                         break;
                     }
-                } catch (RequestException $e) {
+                } catch (RequestException) {
                 }
             }
         }
@@ -86,8 +86,7 @@ class YoutubeImageService implements PreviewImageServiceInterface
     protected function getAbsoluteFileName(string $id): string
     {
         $fileName = 'youtube_' . md5($id) . '.jpg';
-        $absoluteFileName = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/' . $fileName);
 
-        return $absoluteFileName;
+        return GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/' . $fileName);
     }
 }

@@ -6,20 +6,8 @@ namespace IchHabRecht\SocialGdpr\Handler;
 
 class ContentMatch
 {
-    /**
-     * @var array
-     */
-    protected $data = [];
-
-    /**
-     * @var string
-     */
-    protected $search;
-
-    public function __construct(string $search, array $data = [])
+    public function __construct(protected string $search, protected array $data = [])
     {
-        $this->search = $search;
-        $this->data = $data;
     }
 
     public function getData(): array

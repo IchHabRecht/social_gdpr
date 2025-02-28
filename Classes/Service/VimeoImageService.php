@@ -20,14 +20,14 @@ class VimeoImageService implements PreviewImageServiceInterface
     /**
      * @var ExtensionConfiguration
      */
-    protected $extensionConfiguration;
+    protected object $extensionConfiguration;
 
     /**
      * @var RequestFactory
      */
-    protected $requestFactory;
+    protected object $requestFactory;
 
-    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
+    public function __construct(?ExtensionConfiguration $extensionConfiguration = null, ?RequestFactory $requestFactory = null)
     {
         $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
         $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
@@ -49,7 +49,7 @@ class VimeoImageService implements PreviewImageServiceInterface
                 if ($response->getStatusCode() === 200) {
                     $json = json_decode($response->getBody()->getContents(), true);
                     if (!empty($json[0]['thumbnail_large']) || !empty($json[0]['thumbnail_medium']) || !empty($json[0]['thumbnail_small'])) {
-                        $thumbnailUri = $json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium'] ?: $json[0]['thumbnail_small'];
+                        $thumbnailUri = ($json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium']) ?: $json[0]['thumbnail_small'];
                         $thumbnailResponse = $this->requestFactory->request($thumbnailUri);
                         if ($thumbnailResponse->getStatusCode() === 200) {
                             GeneralUtility::writeFileToTypo3tempDir($filename, $thumbnailResponse->getBody()->getContents());
@@ -57,7 +57,7 @@ class VimeoImageService implements PreviewImageServiceInterface
                         }
                     }
                 }
-            } catch (RequestException $e) {
+            } catch (RequestException) {
             }
         }
 
@@ -80,8 +80,7 @@ class VimeoImageService implements PreviewImageServiceInterface
     protected function getAbsoluteFileName(string $id): string
     {
         $fileName = 'vimeo_' . md5($id) . '.jpg';
-        $absoluteFileName = GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/' . $fileName);
 
-        return $absoluteFileName;
+        return GeneralUtility::getFileAbsFileName('typo3temp/assets/tx_socialgdpr/' . $fileName);
     }
 }

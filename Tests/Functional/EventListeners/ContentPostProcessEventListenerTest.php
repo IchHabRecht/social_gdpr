@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace IchHabRecht\SocialGdpr\Tests\Functional\Hooks;
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
-class ContentPostProcessHookTest extends FunctionalTestCase
+class ContentPostProcessEventListenerTest extends FunctionalTestCase
 {
     public function __construct($name = null, array $data = [], $dataName = '')
     {
@@ -52,10 +53,8 @@ class ContentPostProcessHookTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix()
+    #[Test]
+    public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix(): void
     {
         $request = new InternalRequest('http://localhost/');
 
@@ -65,12 +64,12 @@ class ContentPostProcessHookTest extends FunctionalTestCase
             $response = $this->executeFrontendSubRequest($request);
         }
 
-        $this->assertEquals(200, $response->getStatusCode());
+        self::assertEquals(200, $response->getStatusCode());
 
         $content = (string)$response->getBody();
 
-        $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/youtube_play_button.svg', $content);
-        $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/play_button.svg', $content);
+        self::assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/youtube_play_button.svg', $content);
+        self::assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/play_button.svg', $content);
     }
 
     protected function setUpFrontendPage($pageId, array $typoScriptFiles = [], array $templateValues = [])
