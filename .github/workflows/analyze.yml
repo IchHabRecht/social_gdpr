@@ -9,22 +9,24 @@ on:
             - pre-merge
 
 jobs:
+    compute:
+        uses: ./.github/workflows/compute.yml
+
     test:
         uses: ./.github/workflows/test.yml
 
     sonar:
         name: '✔ with SonarCloud'
 
+        needs: [ compute, test ]
+
         env:
-            php: '8.2'
-            typo3: '^12.4'
-            sonar_token: ${{ secrets.SONAR_TOKEN }}
+            php: ${{ fromJson(needs.compute.outputs.php-single) }}
+            typo3: ${{ fromJson(needs.compute.outputs.typo3-single) }}
 
         if: github.repository == 'IchHabRecht/social_gdpr'
 
-        needs: [ test ]
-
-        runs-on: ubuntu-latest
+        runs-on: ${{ fromJson(needs.compute.outputs.os-single) }}
 
         steps:
             -   name: Checkout
@@ -56,7 +58,13 @@ jobs:
                 uses: shivammathur/setup-php@v2
                 with:
                     php-version: ${{ env.php }}
+                    extensions: mbstring, intl, pdo_sqlite, pdo_mysql
                     tools: composer:v2
+
+            -   name: Environment Check
+                run: |
+                    php --version
+                    composer --version
 
             -   name: Composer install
                 run: composer require --no-progress --no-suggest typo3/cms-core:"${{ env.typo3 }}" nimut/phpunit-merger
@@ -67,7 +75,6 @@ jobs:
                     .Build/bin/phpunit-merger log .Log/junit/ .Log/junit.xml;
 
             -   name: SonarCloud Scan
-                if: ${{ env.sonar_token != '' }}
                 uses: sonarsource/sonarcloud-github-action@master
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

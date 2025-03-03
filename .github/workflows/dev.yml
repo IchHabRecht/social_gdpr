@@ -3,30 +3,25 @@ name: 🏃 dev tests
 on: [ push, pull_request ]
 
 jobs:
+    compute:
+        uses: ./.github/workflows/compute.yml
+
     test:
         uses: ./.github/workflows/test.yml
 
     dev:
         name: 'TYPO3: ${{ matrix.typo3 }} - PHP: ${{ matrix.php }} - ${{ matrix.dependency-version }}'
 
-        needs: [ test ]
+        needs: [ compute, test ]
 
         strategy:
             fail-fast: false
             matrix:
-                os: [ 'ubuntu-latest' ]
-                typo3: [ '10.4.x-dev', '11.5.x-dev', '12.4.x-dev' ]
-                php: [ '7.4', '8.0', '8.1' ]
+                os: ${{ fromJson(needs.compute.outputs.os)  }}
+                php: ${{ fromJson(needs.compute.outputs.php)  }}
+                typo3: ${{ fromJson(needs.compute.outputs.typo3_dev)  }}
                 dependency-version: [ 'lowest', 'stable' ]
-                exclude:
-                    -   typo3: '10.4.x-dev'
-                        php: '8.0'
-                    -   typo3: '10.4.x-dev'
-                        php: '8.1'
-                    -   typo3: '12.4.x-dev'
-                        php: '7.4'
-                    -   typo3: '12.4.x-dev'
-                        php: '8.0'
+                exclude: ${{ fromJson(needs.compute.outputs.exclude)  }}
 
         runs-on: ${{ matrix.os }}
 
@@ -73,7 +68,7 @@ jobs:
             -   name: Composer install
                 run: |
                     composer config minimum-stability dev
-                    composer update --with "typo3/cms-core:${{ matrix.typo3 }}" --no-interaction  --prefer-dist --prefer-${{ matrix.dependency-version }}
+                    composer update --with "typo3/cms-core:${{ matrix.typo3 }}" --no-interaction  --prefer-dist --prefer-stable --prefer-${{ matrix.dependency-version }}
 
             -   name: Save composer cache
                 uses: actions/cache/save@v4
@@ -86,7 +81,7 @@ jobs:
 
             -   name: Unit Tests
                 if: ${{ hashFiles('Tests/Unit/') != '' }}
-                run: .Build/bin/phpunit --bootstrap .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTestsBootstrap.php --testsuite unit
+                run: .Build/bin/phpunit --bootstrap .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTestsBootstrap.php --no-coverage --no-logging --testsuite unit
 
             -   name: Functional Tests
                 if: ${{ success() || failure() }} && ${{ hashFiles('Tests/Functional/') != '' }}
@@ -99,4 +94,4 @@ jobs:
                     sudo /etc/init.d/mysql start                
                     mkdir -p .Build/public/typo3conf/ext/
                     if [ ! -L .Build/public/typo3conf/ext/social_gdpr ]; then ln -snvf ../../../../. .Build/public/typo3conf/ext/social_gdpr; fi
-                    find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo "Running functional test suite {}"; .Build/bin/phpunit --bootstrap .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTestsBootstrap.php {}'
+                    find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo ""; echo ""; echo; echo "Running functional test suite {}"; .Build/bin/phpunit --bootstrap .Build/vendor/typo3/testing-framework/Resources/Core/Build/FunctionalTestsBootstrap.php --no-coverage --no-logging {}'
