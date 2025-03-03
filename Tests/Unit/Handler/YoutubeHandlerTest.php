@@ -8,7 +8,7 @@ use IchHabRecht\SocialGdpr\Handler\YoutubeHandler;
 use IchHabRecht\SocialGdpr\Service\YoutubeImageService;
 use Prophecy\Prophet;
 
-class YoutubeHandlerTest extends AbstractHandlerTest
+class YoutubeHandlerTest extends AbstractHandler
 {
     /**
      * @test

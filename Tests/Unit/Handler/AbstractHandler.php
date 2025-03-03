@@ -6,7 +6,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
-abstract class AbstractHandlerTest extends UnitTestCase
+abstract class AbstractHandler extends UnitTestCase
 {
     /**
      * @var string

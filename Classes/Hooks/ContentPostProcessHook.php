@@ -27,11 +27,6 @@ class ContentPostProcessHook
         $this->replaceSocialMediaInContent($event->getController());
     }
 
-    public function replaceSocialMedia(array $parameter)
-    {
-        $this->replaceSocialMediaInContent($parameter['pObj']);
-    }
-
     protected function replaceSocialMediaInContent(TypoScriptFrontendController $typoScriptFrontendController)
     {
         $content = $typoScriptFrontendController->content;
