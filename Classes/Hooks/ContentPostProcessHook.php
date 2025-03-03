@@ -24,7 +24,9 @@ class ContentPostProcessHook
 
     public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event)
     {
-        $this->replaceSocialMediaInContent($event->getController());
+        $request = $event->getRequest();
+        $controller = $request->getAttribute('frontend.controller');
+        $this->replaceSocialMediaInContent($controller);
     }
 
     protected function replaceSocialMediaInContent(TypoScriptFrontendController $typoScriptFrontendController)
