@@ -8,15 +8,35 @@ services:
         resource: '../Classes/*'
 
     IchHabRecht\SocialGdpr\Form\CustomInlineControl\OnlineFalMediaPreviewFlush:
+        public: true
         tags:
             -   name: event.listener
                 identifier: 'socialgdprModifyFileReferenceControlsEvent'
                 event: TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent
                 method: renderFileReferenceHeaderControl
 
+    IchHabRecht\SocialGdpr\Handler\OpenStreetMapHandler:
+        public: true
+
+    IchHabRecht\SocialGdpr\Handler\VimeoHandler:
+        public: true
+
+    IchHabRecht\SocialGdpr\Handler\YoutubeHandler:
+        public: true
+
     IchHabRecht\SocialGdpr\Hooks\ContentPostProcessHook:
+        public: true
         tags:
             -   name: event.listener
                 identifier: 'socialgdprAfterCacheableContentIsGeneratedEventListener'
                 event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
                 method: replaceSocialMediaWithEvent
+
+    IchHabRecht\SocialGdpr\Service\OpenStreetMapService:
+        public: true
+
+    IchHabRecht\SocialGdpr\Service\VimeoImageService:
+        public: true
+
+    IchHabRecht\SocialGdpr\Service\YoutubeImageService:
+        public: true

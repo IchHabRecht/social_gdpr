@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace IchHabRecht\SocialGdpr\Handler;
 
 use IchHabRecht\SocialGdpr\Service\OpenStreetMapService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
@@ -16,14 +15,8 @@ class OpenStreetMapHandler implements HandlerInterface
      */
     protected $matches = [];
 
-    /**
-     * @var OpenStreetMapService
-     */
-    protected $openStreetMapService;
-
-    public function __construct(OpenStreetMapService $openStreetMapService = null)
+    public function __construct(protected OpenStreetMapService $openStreetMapService)
     {
-        $this->openStreetMapService = $openStreetMapService ?: GeneralUtility::makeInstance(OpenStreetMapService::class);
     }
 
     /**

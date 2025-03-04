@@ -12,14 +12,8 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 class ContentPostProcessHook
 {
-    /**
-     * @var ContentObjectRenderer|null
-     */
-    protected $contentObjectRenderer;
-
-    public function __construct(ContentObjectRenderer $contentObjectRenderer = null)
+    public function __construct(protected ContentObjectRenderer $contentObjectRenderer)
     {
-        $this->contentObjectRenderer = $contentObjectRenderer ?: GeneralUtility::makeInstance(ContentObjectRenderer::class);
     }
 
     public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event)

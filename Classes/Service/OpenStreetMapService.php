@@ -18,20 +18,10 @@ class OpenStreetMapService
      */
     protected $apiUri = 'https://render.openstreetmap.org/cgi-bin/export?bbox=###BBOX###&scale=###scale###&format=png';
 
-    /**
-     * @var ExtensionConfiguration
-     */
-    protected $extensionConfiguration;
-
-    /**
-     * @var RequestFactory
-     */
-    protected $requestFactory;
-
-    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
-    {
-        $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
-        $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
+    public function __construct(
+        protected ExtensionConfiguration $extensionConfiguration,
+        protected RequestFactory $requestFactory
+    ) {
     }
 
     public function getPreviewImage($bbox): string
