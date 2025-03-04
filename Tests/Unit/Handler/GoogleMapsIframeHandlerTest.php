@@ -6,7 +6,7 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\GoogleMapsIframeHandler;
 
-class GoogleMapsIframeHandlerTest extends AbstractHandlerTest
+class GoogleMapsIframeHandlerTest extends AbstractHandler
 {
     /**
      * @test

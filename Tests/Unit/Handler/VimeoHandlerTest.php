@@ -8,7 +8,7 @@ use IchHabRecht\SocialGdpr\Handler\VimeoHandler;
 use IchHabRecht\SocialGdpr\Service\VimeoImageService;
 use Prophecy\Prophet;
 
-class VimeoHandlerTest extends AbstractHandlerTest
+class VimeoHandlerTest extends AbstractHandler
 {
     /**
      * @test

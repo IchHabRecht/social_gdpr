@@ -24,12 +24,9 @@ class ContentPostProcessHook
 
     public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event)
     {
-        $this->replaceSocialMediaInContent($event->getController());
-    }
-
-    public function replaceSocialMedia(array $parameter)
-    {
-        $this->replaceSocialMediaInContent($parameter['pObj']);
+        $request = $event->getRequest();
+        $controller = $request->getAttribute('frontend.controller');
+        $this->replaceSocialMediaInContent($controller);
     }
 
     protected function replaceSocialMediaInContent(TypoScriptFrontendController $typoScriptFrontendController)
@@ -63,7 +60,8 @@ class ContentPostProcessHook
                     );
 
                     $this->contentObjectRenderer->start($data, 'tt_content');
-                    $handlerContent = $this->contentObjectRenderer->cObjGetSingle($typoScriptFrontendController->tmpl->setup['lib.']['socialgdpr'], $typoScriptFrontendController->tmpl->setup['lib.']['socialgdpr.']);
+                    $typoScript = $this->contentObjectRenderer->getRequest()->getAttribute('frontend.typoscript')->getSetupArray();
+                    $handlerContent = $this->contentObjectRenderer->cObjGetSingle($typoScript['lib.']['socialgdpr'], $typoScript['lib.']['socialgdpr.']);
                     $content = str_replace($match->getSearch(), $handlerContent, $content);
                 }
             }
