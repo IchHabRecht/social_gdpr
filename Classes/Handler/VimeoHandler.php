@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace IchHabRecht\SocialGdpr\Handler;
 
 use IchHabRecht\SocialGdpr\Service\VimeoImageService;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Core\Utility\StringUtility;
 
@@ -16,14 +15,8 @@ class VimeoHandler implements HandlerInterface
      */
     protected $matches = [];
 
-    /**
-     * @var VimeoImageService
-     */
-    protected $vimeoImageService;
-
-    public function __construct(VimeoImageService $vimeoImageService = null)
+    public function __construct(protected VimeoImageService $vimeoImageService)
     {
-        $this->vimeoImageService = $vimeoImageService ?: GeneralUtility::makeInstance(VimeoImageService::class);
     }
 
     public function hasMatches(string $content): bool

@@ -17,20 +17,10 @@ class VimeoImageService implements PreviewImageServiceInterface
      */
     protected $apiUri = 'https://vimeo.com/api/v2/video/###ID###.json';
 
-    /**
-     * @var ExtensionConfiguration
-     */
-    protected $extensionConfiguration;
-
-    /**
-     * @var RequestFactory
-     */
-    protected $requestFactory;
-
-    public function __construct(ExtensionConfiguration $extensionConfiguration = null, RequestFactory $requestFactory = null)
-    {
-        $this->extensionConfiguration = $extensionConfiguration ?: GeneralUtility::makeInstance(ExtensionConfiguration::class);
-        $this->requestFactory = $requestFactory ?: GeneralUtility::makeInstance(RequestFactory::class);
+    public function __construct(
+        protected ExtensionConfiguration $extensionConfiguration,
+        protected RequestFactory $requestFactory
+    ) {
     }
 
     public function getPreviewImage(string $id): string

@@ -12,9 +12,9 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class ContentPostProcessHookTest extends FunctionalTestCase
 {
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function __construct(string $name)
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct($name);
 
         $this->testExtensionsToLoad = [
             'typo3conf/ext/social_gdpr',

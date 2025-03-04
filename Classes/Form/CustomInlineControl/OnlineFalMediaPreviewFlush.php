@@ -16,32 +16,14 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class OnlineFalMediaPreviewFlush
 {
-    protected IconFactory $iconFactory;
-
-    protected IconRegistry $iconRegistry;
-
-    protected OnlineMediaHelperRegistry $onlineMediaRegistry;
-
-    protected PageRenderer $pageRenderer;
-
-    protected PreviewImageServiceRegistry $previewImageServiceRegistry;
-
-    protected ResourceFactory $resourceFactory;
-
     public function __construct(
-        IconFactory $iconFactory = null,
-        IconRegistry $iconRegistry = null,
-        OnlineMediaHelperRegistry $onlineMediaRegistry = null,
-        PageRenderer $pageRenderer = null,
-        PreviewImageServiceRegistry $previewImageServiceRegistry = null,
-        ResourceFactory $resourceFactory = null
+        protected IconFactory $iconFactory,
+        protected IconRegistry $iconRegistry,
+        protected OnlineMediaHelperRegistry $onlineMediaRegistry,
+        protected PageRenderer $pageRenderer,
+        protected PreviewImageServiceRegistry $previewImageServiceRegistry,
+        protected ResourceFactory $resourceFactory
     ) {
-        $this->iconFactory = $iconFactory ?: GeneralUtility::makeInstance(IconFactory::class);
-        $this->iconRegistry = $iconRegistry ?: GeneralUtility::makeInstance(IconRegistry::class);
-        $this->onlineMediaRegistry = $onlineMediaRegistry ?: GeneralUtility::makeInstance(OnlineMediaHelperRegistry::class);
-        $this->pageRenderer = $pageRenderer ?: GeneralUtility::makeInstance(PageRenderer::class);
-        $this->previewImageServiceRegistry = $previewImageServiceRegistry ?: GeneralUtility::makeInstance(PreviewImageServiceRegistry::class);
-        $this->resourceFactory = $resourceFactory ?: GeneralUtility::makeInstance(ResourceFactory::class);
     }
 
     public function renderFileReferenceHeaderControl(ModifyFileReferenceControlsEvent $event)
