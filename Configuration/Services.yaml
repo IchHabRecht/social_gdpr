@@ -24,11 +24,11 @@ services:
     IchHabRecht\SocialGdpr\Handler\YoutubeHandler:
         public: true
 
-    IchHabRecht\SocialGdpr\Hooks\ContentPostProcessHook:
+    IchHabRecht\SocialGdpr\EventListener\CacheableContentIsGeneratedEventListener:
         public: true
         tags:
             -   name: event.listener
-                identifier: 'socialgdprAfterCacheableContentIsGeneratedEventListener'
+                identifier: 'socialgdprCacheableContentIsGeneratedEventListener'
                 event: TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent
                 method: replaceSocialMediaWithEvent
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace IchHabRecht\SocialGdpr\Hooks;
+namespace IchHabRecht\SocialGdpr\EventListener;
 
 use IchHabRecht\SocialGdpr\Handler\ContentMatch;
 use IchHabRecht\SocialGdpr\Handler\HandlerInterface;
@@ -10,7 +10,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
-class ContentPostProcessHook
+class CacheableContentIsGeneratedEventListener
 {
     public function __construct(protected ContentObjectRenderer $contentObjectRenderer)
     {
