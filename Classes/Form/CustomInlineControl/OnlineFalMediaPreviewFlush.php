@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace IchHabRecht\SocialGdpr\Form\CustomInlineControl;
 
 use IchHabRecht\SocialGdpr\Service\PreviewImageServiceRegistry;
-use TYPO3\CMS\Backend\Form\Element\InlineElementHookInterface;
 use TYPO3\CMS\Backend\Form\Event\ModifyFileReferenceControlsEvent;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -15,7 +14,7 @@ use TYPO3\CMS\Core\Resource\OnlineMedia\Helpers\OnlineMediaHelperRegistry;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
+class OnlineFalMediaPreviewFlush
 {
     protected IconFactory $iconFactory;
 
@@ -61,45 +60,10 @@ class OnlineFalMediaPreviewFlush implements InlineElementHookInterface
             return;
         }
 
-        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/SocialGdpr/Backend/PreviewImageFlush');
+        $this->pageRenderer->loadJavaScriptModule('@ichhabrecht/social-gdpr/backend/preview_image_flush.js');
         $controls = $event->getControls();
         $controls['youtubeFlush'] = $this->renderControlItem($record);
         $event->setControls($controls);
-    }
-
-    public function renderForeignRecordHeaderControl_preProcess(
-        $parentUid,
-        $foreignTable,
-        array $childRecord,
-        array $childConfig,
-        $isVirtual,
-        array &$enabledControls
-    ) {
-        // Do nothing.
-    }
-
-    public function renderForeignRecordHeaderControl_postProcess(
-        $parentUid,
-        $foreignTable,
-        array $childRecord,
-        array $childConfig,
-        $isVirtual,
-        array &$controlItems
-    ) {
-        if ($foreignTable !== 'sys_file_reference') {
-            return;
-        }
-
-        $fileExtension = $childRecord['uid_local'][0]['row']['extension'] ?? '';
-        if (
-            !$this->previewImageServiceRegistry->hasPreviewImageService($fileExtension)
-            || !$this->onlineMediaRegistry->hasOnlineMediaHelper($fileExtension)
-        ) {
-            return;
-        }
-
-        $this->pageRenderer->loadRequireJsModule('TYPO3/CMS/SocialGdpr/Backend/PreviewImageFlush');
-        $controlItems['youtubeFlush'] = $this->renderControlItem($childRecord);
     }
 
     protected function renderControlItem(array $record): string

@@ -8,7 +8,7 @@ use IchHabRecht\SocialGdpr\Handler\OpenStreetMapHandler;
 use IchHabRecht\SocialGdpr\Service\OpenStreetMapService;
 use Prophecy\Prophet;
 
-class OpenStreetMapHandlerTest extends AbstractHandlerTest
+class OpenStreetMapHandlerTest extends AbstractHandler
 {
     /**
      * @test

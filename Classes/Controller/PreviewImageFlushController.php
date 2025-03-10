@@ -8,7 +8,7 @@ use IchHabRecht\SocialGdpr\Service\PreviewImageServiceRegistry;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\JsonResponse;
-use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Core\Type\ContextualFeedbackSeverity;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class PreviewImageFlushController
@@ -18,20 +18,20 @@ class PreviewImageFlushController
         $youtubeId = $serverRequest->getParsedBody()['id'] ?? null;
         $type = $serverRequest->getParsedBody()['type'] ?? null;
         if ($youtubeId === null) {
-            return new JsonResponse(['status' => AbstractMessage::ERROR, 'message' => 'Missing id']);
+            return new JsonResponse(['status' => ContextualFeedbackSeverity::ERROR, 'message' => 'Missing id']);
         }
         if ($type === null) {
-            return new JsonResponse(['status' => AbstractMessage::ERROR, 'message' => 'Missing type']);
+            return new JsonResponse(['status' => ContextualFeedbackSeverity::ERROR, 'message' => 'Missing type']);
         }
 
         $previewImageServiceRegistry = GeneralUtility::makeInstance(PreviewImageServiceRegistry::class);
         $previewImageService = $previewImageServiceRegistry->getPreviewImageService($type);
 
         if (!$previewImageService->hasPreviewImage($youtubeId)) {
-            return new JsonResponse(['status' => AbstractMessage::INFO, 'message' => 'Preview image does not exist']);
+            return new JsonResponse(['status' => ContextualFeedbackSeverity::INFO, 'message' => 'Preview image does not exist']);
         }
         $previewImageService->deletePreviewImage($youtubeId);
 
-        return new JsonResponse(['status' => AbstractMessage::OK, 'message' => 'Preview image deleted']);
+        return new JsonResponse(['status' => ContextualFeedbackSeverity::OK, 'message' => 'Preview image deleted']);
     }
 }
