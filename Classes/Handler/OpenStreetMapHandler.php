@@ -33,7 +33,7 @@ class OpenStreetMapHandler implements HandlerInterface
     public function hasMatches(string $content): bool
     {
         preg_match_all(
-            '/<iframe(?:(?: src="(?:(?:https?:)?\/\/)?(?:www\.)?openstreetmap\.org\/export\/embed.html\?bbox=(?<bbox>[^&]+)[^"]*?"| height="(?<height>[^"]+)"| width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
+            '/<iframe(?:(?: src="(?:(?:https?:)?\/\/)?(?:(?:www|umap)\.)?openstreetmap\.(?:org|de|fr)\/(?:export\/embed.html\?bbox=(?<bbox>[^&]+)|[a-z]{2}\/map\/)[^"]*?"| height="(?<height>[^"]+)"| width="(?<width>[^"]+)"|(?!src)[^>])+)>.*?<\/iframe>/i',
             $content,
             $this->matches,
             PREG_SET_ORDER
