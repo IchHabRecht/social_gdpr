@@ -15,7 +15,7 @@ class VimeoImageService implements PreviewImageServiceInterface
     /**
      * @var string
      */
-    protected $apiUri = 'https://vimeo.com/api/v2/video/###ID###.json';
+    protected $apiUri = 'https://vimeo.com/api/oembed.json?width=2048&url=https%3A%2F%2Fvimeo.com%2F###ID###';
 
     /**
      * @var ExtensionConfiguration
@@ -48,9 +48,8 @@ class VimeoImageService implements PreviewImageServiceInterface
                 $response = $this->requestFactory->request($uri);
                 if ($response->getStatusCode() === 200) {
                     $json = json_decode($response->getBody()->getContents(), true);
-                    if (!empty($json[0]['thumbnail_large']) || !empty($json[0]['thumbnail_medium']) || !empty($json[0]['thumbnail_small'])) {
-                        $thumbnailUri = $json[0]['thumbnail_large'] ?: $json[0]['thumbnail_medium'] ?: $json[0]['thumbnail_small'];
-                        $thumbnailResponse = $this->requestFactory->request($thumbnailUri);
+                    if (!empty($json['thumbnail_url'])) {
+                        $thumbnailResponse = $this->requestFactory->request($json['thumbnail_url']);
                         if ($thumbnailResponse->getStatusCode() === 200) {
                             GeneralUtility::writeFileToTypo3tempDir($filename, $thumbnailResponse->getBody()->getContents());
                             $fileExists = true;
