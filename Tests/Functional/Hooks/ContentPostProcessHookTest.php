@@ -4,37 +4,32 @@ declare(strict_types=1);
 
 namespace IchHabRecht\SocialGdpr\Tests\Functional\Hooks;
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Core\Environment;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 class ContentPostProcessHookTest extends FunctionalTestCase
 {
-    public function __construct(string $name)
-    {
-        parent::__construct($name);
+    protected array $testExtensionsToLoad = [
+        'typo3conf/ext/social_gdpr',
+    ];
 
-        $this->testExtensionsToLoad = [
-            'typo3conf/ext/social_gdpr',
-        ];
-
-        $this->configurationToUseInTestInstance = [
-            'EXT' => [
-                'extConf' => [
-                    'social_gdpr' => 'a:3:{s:14:"youtubePreview";s:1:"1";s:12:"vimeoPreview";s:1:"1";s:10:"osmPreview";s:1:"1";}',
-                ],
+    protected array $configurationToUseInTestInstance = [
+        'EXT' => [
+            'extConf' => [
+                'social_gdpr' => 'a:3:{s:14:"youtubePreview";s:1:"1";s:12:"vimeoPreview";s:1:"1";s:10:"osmPreview";s:1:"1";}',
             ],
-            'EXTENSIONS' => [
-                'social_gdpr' => [
-                    'osmPreview' => '0',
-                    'vimeoPreview' => '0',
-                    'youtubePreview' => '0',
-                ],
+        ],
+        'EXTENSIONS' => [
+            'social_gdpr' => [
+                'osmPreview' => '0',
+                'vimeoPreview' => '0',
+                'youtubePreview' => '0',
             ],
-        ];
-    }
+        ],
+    ];
 
     protected function setUp(): void
     {
@@ -52,18 +47,11 @@ class ContentPostProcessHookTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
-    public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix()
+    #[Test]
+    public function replaceSocialMediaReturnsPlayButtonWithAbsRefPrefix(): void
     {
         $request = new InternalRequest('http://localhost/');
-
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 11) {
-            $response = $this->executeFrontendRequest($request);
-        } else {
-            $response = $this->executeFrontendSubRequest($request);
-        }
+        $response = $this->executeFrontendSubRequest($request);
 
         $this->assertEquals(200, $response->getStatusCode());
 
@@ -73,7 +61,7 @@ class ContentPostProcessHookTest extends FunctionalTestCase
         $this->assertStringContainsString('/typo3conf/ext/social_gdpr/Resources/Public/Images/play_button.svg', $content);
     }
 
-    protected function setUpFrontendPage($pageId, array $typoScriptFiles = [], array $templateValues = [])
+    protected function setUpFrontendPage(int $pageId, array $typoScriptFiles = [], array $templateValues = []): void
     {
         parent::setUpFrontendRootPage($pageId, $typoScriptFiles, $templateValues);
 

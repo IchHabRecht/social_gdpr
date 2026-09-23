@@ -6,14 +6,13 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\OpenStreetMapHandler;
 use IchHabRecht\SocialGdpr\Service\OpenStreetMapService;
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\Prophet;
 
 class OpenStreetMapHandlerTest extends AbstractHandler
 {
-    /**
-     * @test
-     */
-    public function hasMatchesFindsAllYouTubeIframes()
+    #[Test]
+    public function hasMatchesFindsAllYouTubeIframes(): void
     {
         $handler = $this->getOpenStreetMapHandler();
 
