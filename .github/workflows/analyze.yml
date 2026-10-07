@@ -30,12 +30,12 @@ jobs:
 
         steps:
             -   name: Checkout
-                uses: actions/checkout@v4
+                uses: actions/checkout@v7
                 with:
                     fetch-depth: 0
 
             -   name: Download PHPUnit logs
-                uses: actions/download-artifact@v4
+                uses: actions/download-artifact@v8
                 with:
                     path: .Log
                     pattern: phpunit-logs-*
@@ -45,7 +45,7 @@ jobs:
                 id: composer-cache
                 run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-            -   uses: actions/cache/restore@v4
+            -   uses: actions/cache/restore@v6
                 id: restore-composer-cache
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}

@@ -6,14 +6,13 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\YoutubeHandler;
 use IchHabRecht\SocialGdpr\Service\YoutubeImageService;
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\Prophet;
 
 class YoutubeHandlerTest extends AbstractHandler
 {
-    /**
-     * @test
-     */
-    public function hasMatchesFindsAllYouTubeIframes()
+    #[Test]
+    public function hasMatchesFindsAllYouTubeIframes(): void
     {
         $handler = $this->getYoutubeHandler();
 

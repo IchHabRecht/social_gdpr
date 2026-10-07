@@ -6,14 +6,13 @@ namespace IchHabRecht\SocialGdpr\Tests\Unit\Handler;
 
 use IchHabRecht\SocialGdpr\Handler\VimeoHandler;
 use IchHabRecht\SocialGdpr\Service\VimeoImageService;
+use PHPUnit\Framework\Attributes\Test;
 use Prophecy\Prophet;
 
 class VimeoHandlerTest extends AbstractHandler
 {
-    /**
-     * @test
-     */
-    public function hasMatchesFindsAllYouTubeIframes()
+    #[Test]
+    public function hasMatchesFindsAllYouTubeIframes(): void
     {
         $handler = $this->getVimeoHandler();
 

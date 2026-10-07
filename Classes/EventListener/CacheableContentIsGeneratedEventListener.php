@@ -6,26 +6,32 @@ namespace IchHabRecht\SocialGdpr\EventListener;
 
 use IchHabRecht\SocialGdpr\Handler\ContentMatch;
 use IchHabRecht\SocialGdpr\Handler\HandlerInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent;
 
 class CacheableContentIsGeneratedEventListener
 {
-    public function __construct(protected ContentObjectRenderer $contentObjectRenderer)
-    {
-    }
-
-    public function replaceSocialMediaWithEvent(\TYPO3\CMS\Frontend\Event\AfterCacheableContentIsGeneratedEvent $event)
+    public function replaceSocialMediaWithEvent(AfterCacheableContentIsGeneratedEvent $event): void
     {
         $request = $event->getRequest();
-        $controller = $request->getAttribute('frontend.controller');
-        $this->replaceSocialMediaInContent($controller);
+        if (method_exists($event, 'getContent')) {
+            $event->setContent($this->replaceSocialMediaInContent($event->getContent(), $request));
+
+            return;
+        }
+
+        // TYPO3 v12/v13 compatibility: getContent()/setContent() were added in v14.
+        $controller = $event->getController();
+        $controller->content = $this->replaceSocialMediaInContent($controller->content, $request);
     }
 
-    protected function replaceSocialMediaInContent(TypoScriptFrontendController $typoScriptFrontendController)
+    protected function replaceSocialMediaInContent(string $content, ServerRequestInterface $request): string
     {
-        $content = $typoScriptFrontendController->content;
+        $contentObjectRenderer = GeneralUtility::makeInstance(ContentObjectRenderer::class);
+        $contentObjectRenderer->setRequest($request);
+        $typoScript = $request->getAttribute('frontend.typoscript')->getSetupArray();
 
         foreach ((array)$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['social_gdpr']['handler'] as $templateName => $className) {
             $handler = GeneralUtility::makeInstance($className);
@@ -53,14 +59,13 @@ class CacheableContentIsGeneratedEventListener
                         ]
                     );
 
-                    $this->contentObjectRenderer->start($data, 'tt_content');
-                    $typoScript = $this->contentObjectRenderer->getRequest()->getAttribute('frontend.typoscript')->getSetupArray();
-                    $handlerContent = $this->contentObjectRenderer->cObjGetSingle($typoScript['lib.']['socialgdpr'], $typoScript['lib.']['socialgdpr.']);
+                    $contentObjectRenderer->start($data, 'tt_content');
+                    $handlerContent = $contentObjectRenderer->cObjGetSingle($typoScript['lib.']['socialgdpr'], $typoScript['lib.']['socialgdpr.']);
                     $content = str_replace($match->getSearch(), $handlerContent, $content);
                 }
             }
         }
 
-        $typoScriptFrontendController->content = $content;
+        return $content;
     }
 }

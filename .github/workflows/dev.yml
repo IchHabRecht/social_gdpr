@@ -27,7 +27,7 @@ jobs:
 
         steps:
             -   name: Checkout
-                uses: actions/checkout@v4
+                uses: actions/checkout@v7
 
             -   name: Store Composer cache directory
                 id: composer-cache
@@ -39,7 +39,7 @@ jobs:
                     TYPO3: ${{ matrix.typo3 }}
                 run: echo "version=${TYPO3//[!0-9]/}" >> $GITHUB_OUTPUT
 
-            -   uses: actions/cache/restore@v4
+            -   uses: actions/cache/restore@v6
                 id: restore-composer-cache
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
@@ -71,7 +71,7 @@ jobs:
                     composer update --with "typo3/cms-core:${{ matrix.typo3 }}" --no-interaction  --prefer-dist --prefer-stable --prefer-${{ matrix.dependency-version }}
 
             -   name: Save composer cache
-                uses: actions/cache/save@v4
+                uses: actions/cache/save@v6
                 with:
                     path: ${{ steps.composer-cache.outputs.dir }}
                     key: ${{ steps.restore-composer-cache.outputs.cache-primary-key }}
@@ -84,7 +84,7 @@ jobs:
                 run: .Build/bin/phpunit --bootstrap .Build/vendor/typo3/testing-framework/Resources/Core/Build/UnitTestsBootstrap.php --no-coverage --no-logging --testsuite unit
 
             -   name: Functional Tests
-                if: ${{ success() || failure() }} && ${{ hashFiles('Tests/Functional/') != '' }}
+                if: ${{ (success() || failure()) && hashFiles('Tests/Functional/**') != '' }}
                 env:
                     typo3DatabaseHost: '127.0.0.1'
                     typo3DatabaseName: 'typo3'
