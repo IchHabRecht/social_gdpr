@@ -1,3 +1,10 @@
+2026-10-07         [RELEASE] Release of social_gdpr 3.5.0 (Nicole Hummel)
+2026-09-23 0b96735 [BUGFIX] Streamline Vimeo api url with EXT:core (Nicole Hummel)
+2026-09-23 9c2fb4c [BUGFIX] Streamline YouTube preview image resolutions with EXT:core (Nicole Hummel)
+2026-09-23 f29fa1c [TASK] Fix workflow warnings (Nicole Hummel)
+2026-09-23 1fa0434 [TASK] Drop PHP 8.1 support in favor of PHPUnit 11 (Nicole Hummel)
+2026-09-23 f1ceb35 [TASK] Raise compatibility to TYPO3 14.3 (Nicole Hummel)
+
 2025-03-10         [RELEASE] Release of social_gdpr 3.4.0 (Nicole Hummel)
 2025-03-06 ee609a5 [TASK] Rename Hook to EventListener (Nicole Hummel)
 2025-03-04 7222d22 [TASK] Use dependency injection on constructor arguments (Nicole Hummel)
